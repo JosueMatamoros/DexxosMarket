@@ -1,12 +1,12 @@
-
-
+import Ruting from "./routes";
 
 function App() {
   
 
   return (
     <>
-      
+    <Ruting/>
+
     </>
   )
 }
