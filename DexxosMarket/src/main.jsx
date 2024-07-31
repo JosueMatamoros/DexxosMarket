@@ -8,9 +8,9 @@ import ThemeProvider from './context/ThemeProvider';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Flowbite>
-      
+      <ThemeProvider>
         <App />
-   
+      </ThemeProvider>
     </Flowbite>
   </React.StrictMode>
 );
