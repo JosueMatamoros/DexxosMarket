@@ -8,19 +8,19 @@ const {
     removeCartItem
 } = require('../controllers/cartController');
 
-// Obtener todos los elementos del carrito
+// Get all cart items
 router.get('/', fetchCartItems);
 
-// Obtener elemento del carrito por ID
+// Get cart item by id
 router.get('/:cart_item_id', fetchCartItemById);
 
-// Crear nuevo elemento del carrito
+// Add new item to cart
 router.post('/', addCartItem);
 
-// Actualizar elemento del carrito
+// Update item in cart
 router.put('/:cart_item_id', modifyCartItem);
 
-// Eliminar elemento del carrito
+// Delete item from cart
 router.delete('/:cart_item_id', removeCartItem);
 
 module.exports = router;

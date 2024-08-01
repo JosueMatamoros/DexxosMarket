@@ -7,16 +7,16 @@ const {
     removeOrderDetail
 } = require('../controllers/orderDetailController');
 
-// Obtener todos los detalles de órdenes
+// Get all order details
 router.get('/', fetchOrderDetails);
 
-// Obtener detalle de orden por ID y producto
+// Get order detail by id
 router.get('/:order_id/:product_id', fetchOrderDetailById);
 
-// Crear nuevo detalle de orden
+// Add new order detail
 router.post('/', addOrderDetail);
 
-// Eliminar detalle de orden
+// Delete order detail
 router.delete('/:order_id/:product_id', removeOrderDetail);
 
 module.exports = router;

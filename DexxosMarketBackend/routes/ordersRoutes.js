@@ -8,19 +8,19 @@ const {
     removeOrder
 } = require('../controllers/orderController');
 
-// Obtener todas las órdenes
+// Get all orders
 router.get('/', fetchOrders);
 
-// Obtener orden por ID
+// Get order by id
 router.get('/:id', fetchOrderById);
 
-// Crear nueva orden
+// Create new order
 router.post('/', addOrder);
 
-// Actualizar orden
+// Update order
 router.put('/:id', modifyOrder);
 
-// Eliminar orden
+// Delete order
 router.delete('/:id', removeOrder);
 
 module.exports = router;

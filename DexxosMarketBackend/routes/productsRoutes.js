@@ -8,19 +8,19 @@ const {
     removeProduct
 } = require('../controllers/productController');
 
-// Obtener todos los productos
+// Get all products 
 router.get('/', fetchProducts);
 
-// Obtener producto por ID
+// Get product by id
 router.get('/:id', fetchProductById);
 
-// Crear nuevo producto
+// Create new product
 router.post('/', addProduct);
 
-// Actualizar producto
+// Update product
 router.put('/:id', modifyProduct);
 
-// Eliminar producto
+// Delete product
 router.delete('/:id', removeProduct);
 
 module.exports = router;
