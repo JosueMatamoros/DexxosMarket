@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import Header from '../header/Header';
-
+import React, { useState } from "react";
+import Header from "../header/Header";
 
 export default function Account() {
-  const [selectedView, setSelectedView] = useState('Account');
-  const [selectedOption, setSelectedOption] = useState('Personal Information');
+  const [selectedView, setSelectedView] = useState("Account");
+  const [selectedOption, setSelectedOption] = useState("Personal Information");
 
   const renderContent = () => {
-    if (selectedView === 'Account') {
+    if (selectedView === "Account") {
       switch (selectedOption) {
-        case 'Personal Information':
+        case "Personal Information":
           return <div>Personal Information</div>;
-        case 'Address Book':
+        case "Personalization":
+          return <div>Personalization</div>;
+        case "Address Book":
           return <div>Address Book</div>;
-        case 'Order History':
-          return <div>Order History</div>;
         default:
           return null;
       }
-    } else if (selectedView === 'Orders') {
+    } else if (selectedView === "Orders") {
       return <div>Orders</div>;
     }
   };
@@ -28,26 +27,32 @@ export default function Account() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <div className="mt-4 flex">
-          {selectedView === 'Account' && (
+          {selectedView === "Account" && (
             <div className="w-1/4 mx-4">
               <ul className="space-y-3">
-                <li 
-                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${selectedOption === 'Personal Information' ? 'font-bold' : ''} space-x-3`}
-                  onClick={() => setSelectedOption('Personal Information')}
+                <li
+                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${
+                    selectedOption === "Personal Information" ? "font-bold" : ""
+                  } space-x-3`}
+                  onClick={() => setSelectedOption("Personal Information")}
                 >
                   Personal Information
                 </li>
-                <li 
-                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${selectedOption === 'Address Book' ? 'font-bold' : ''} space-x-3`} 
-                  onClick={() => setSelectedOption('Address Book')}
+                <li
+                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${
+                    selectedOption === "Personalization" ? "font-bold" : ""
+                  } space-x-3`}
+                  onClick={() => setSelectedOption("Personalization")}
+                >
+                  Personalization
+                </li>
+                <li
+                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${
+                    selectedOption === "Address Book" ? "font-bold" : ""
+                  } space-x-3`}
+                  onClick={() => setSelectedOption("Address Book")}
                 >
                   Address Book
-                </li>
-                <li 
-                  className={`border p-2 rounded-lg hover:underline cursor-pointer ${selectedOption === 'Order History' ? 'font-bold' : ''} space-x-3`} 
-                  onClick={() => setSelectedOption('Order History')}
-                >
-                  Order History
                 </li>
               </ul>
             </div>
