@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../header/Header";
 
 export default function Account() {
   const [selectedView, setSelectedView] = useState("Account");
@@ -25,7 +24,6 @@ export default function Account() {
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <Header />
         <div className="mt-4 flex">
           {selectedView === "Account" && (
             <div className="w-1/4 mx-4">
