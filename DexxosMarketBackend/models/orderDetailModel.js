@@ -1,37 +1,30 @@
 const pool = require('../config');
 
-const getOrderDetails = async () => {
-    const result = await pool.query('SELECT * FROM order_details');
+
+const getProductsByOrderId = async (order_id) => { // Get all products by order_id
+    const result = await pool.query(
+        'SELECT * FROM order_details WHERE order_id = $1',
+        [order_id]
+    );
     return result.rows;
-};
+}
 
-const getOrderDetailById = async (order_id, product_id) => {
-    const result = await pool.query(
-        'SELECT * FROM order_details WHERE order_id = $1 AND product_id = $2',
-        [order_id, product_id]
-    );
-    return result.rows[0];
-};
-
-const createOrderDetail = async (orderDetail) => {
-    const { order_id, product_id } = orderDetail;
-    const result = await pool.query(
-        'INSERT INTO order_details (order_id, product_id) VALUES ($1, $2) RETURNING *',
-        [order_id, product_id]
-    );
-    return result.rows[0];
-};
-
-const deleteOrderDetail = async (order_id, product_id) => {
+const deleteProductFromOrder = async (order_id, product_id) => { //// Delete product from order
     await pool.query(
         'DELETE FROM order_details WHERE order_id = $1 AND product_id = $2',
         [order_id, product_id]
     );
-};
+}
+
+const createProductToOrder = async (order_id, product_id) => { // Add product to order
+    await pool.query(
+        'INSERT INTO order_details (order_id, product_id) VALUES ($1, $2)',
+        [order_id, product_id]
+    );
+}
 
 module.exports = {
-    getOrderDetails,
-    getOrderDetailById,
-    createOrderDetail,
-    deleteOrderDetail
+    getProductsByOrderId,
+    deleteProductFromOrder,
+    createProductToOrder
 };
