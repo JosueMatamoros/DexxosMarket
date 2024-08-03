@@ -32,8 +32,8 @@ const Header = () => {
         <Navbar.Link as={Link} to="/account">
           Account
         </Navbar.Link>
-        <Navbar.Link as={Link} to="/otra-vara-3">
-          Otra Vara 3
+        <Navbar.Link as={Link} to="/locales">
+         Puntos de Venta
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
