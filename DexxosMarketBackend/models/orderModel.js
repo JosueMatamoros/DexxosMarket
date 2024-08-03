@@ -1,12 +1,12 @@
 const pool = require('../config');
 
-const getOrders = async () => {
-    const result = await pool.query('SELECT * FROM orders');
+const getOrdersByUserId = async (user_id) => {
+    const result = await pool.query('SELECT * FROM orders WHERE user_id = $1', [user_id]);
     return result.rows;
 };
 
-const getOrderById = async (id) => {
-    const result = await pool.query('SELECT * FROM orders WHERE order_id = $1', [id]);
+const getOrderByBarcode = async (barcode) => {
+    const result = await pool.query('SELECT * FROM orders WHERE barcode = $1', [barcode]);
     return result.rows[0];
 };
 
@@ -19,23 +19,8 @@ const createOrder = async (order) => {
     return result.rows[0];
 };
 
-const updateOrder = async (id, order) => {
-    const { user_id, barcode, total_price, shipping_price } = order;
-    const result = await pool.query(
-        'UPDATE orders SET user_id = $1, barcode = $2, total_price = $3, shipping_price = $4 WHERE order_id = $5 RETURNING *',
-        [user_id, barcode, total_price, shipping_price, id]
-    );
-    return result.rows[0];
-};
-
-const deleteOrder = async (id) => {
-    await pool.query('DELETE FROM orders WHERE order_id = $1', [id]);
-};
-
 module.exports = {
-    getOrders,
-    getOrderById,
-    createOrder,
-    updateOrder,
-    deleteOrder
+    getOrdersByUserId,
+    getOrderByBarcode,
+    createOrder
 };
