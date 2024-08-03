@@ -16,10 +16,10 @@ const deleteProductFromOrder = async (order_id, product_id) => { //// Delete pro
     );
 }
 
-const createProductToOrder = async (order_id, product_id) => { // Add product to order
+const createProductToOrder = async (order_id, product_id, quantity) => { // Add product to order
     await pool.query(
-        'INSERT INTO order_details (order_id, product_id) VALUES ($1, $2)',
-        [order_id, product_id]
+        'INSERT INTO order_details (order_id, product_id, quantity) VALUES ($1, $2, $3)',
+        [order_id, product_id, quantity]
     );
 }
 

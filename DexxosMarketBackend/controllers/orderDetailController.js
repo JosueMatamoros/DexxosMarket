@@ -29,8 +29,8 @@ const removeProductFromOrder = async (req, res) => {
 // Add product to order
 const addProductToOrder = async (req, res) => {
     try {
-        const { order_id, product_id } = req.body; // Get order_id and product_id from request body
-        await createProductToOrder(order_id, product_id); // Pass order_id and product_id to the model function
+        const { order_id, product_id, quantity } = req.body; // Get order_id, product_id, and quantity from request body
+        await createProductToOrder(order_id, product_id, quantity); // Pass order_id, product_id, and quantity to the model function
         res.status(201).send();
     } catch (error) {
         res.status(500).send(error.message);
