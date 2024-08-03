@@ -4,7 +4,7 @@ import LocationSelector from '../src/components/locations/LocationSelector';
 
 const GoogleMap = () => {
   const mapRef = useRef(null);
-  const apiKey = "key"; // Introduce Google Maps API Key
+  const apiKey = "AIzaSyDtZz-isjl0ncTSdK5axbmCPOfJmuMoFhA"; // Introduce Google Maps API Key
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
   

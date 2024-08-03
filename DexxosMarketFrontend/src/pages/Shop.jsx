@@ -1,9 +1,8 @@
-"use client"
-
 import { useState, useMemo } from "react";
 import { Label, Checkbox, TextInput} from "flowbite-react";
 import ProductCard from "../components/shop/ProductCard";
 import cartLogo from "../../assets/cartLogo.jpg";
+import ProductCards from "../components/products/ProductCards";
 
 export default function Shop() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,48 +20,6 @@ export default function Shop() {
       id: 2,
       name: "Leche Entera",
       price: 3.5,
-      image: cartLogo,
-      category: "Lácteos",
-    },
-    {
-      id: 3,
-      name: "Pasta de Tomate",
-      price: 1.75,
-      image: cartLogo,
-      category: "Enlatados",
-    },
-    {
-      id: 4,
-      name: "Pechuga de Pollo",
-      price: 5.99,
-      image: cartLogo,
-      category: "Carnes",
-    },
-    {
-      id: 5,
-      name: "Brócoli",
-      price: 2.25,
-      image: cartLogo,
-      category: "Verduras",
-    },
-    {
-      id: 6,
-      name: "Galletas de Avena",
-      price: 3.99,
-      image: cartLogo,
-      category: "Panadería",
-    },
-    {
-      id: 7,
-      name: "Atún Enlatado",
-      price: 2.5,
-      image: cartLogo,
-      category: "Enlatados",
-    },
-    {
-      id: 8,
-      name: "Yogurt Natural",
-      price: 1.99,
       image: cartLogo,
       category: "Lácteos",
     },
@@ -109,7 +66,7 @@ export default function Shop() {
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product) => (
-            <ProductCard
+            <ProductCards
               key={product.id}
               imgSrc={product.image}
               imgAlt={product.name}
