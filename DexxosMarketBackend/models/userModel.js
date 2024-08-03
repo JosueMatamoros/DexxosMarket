@@ -1,10 +1,5 @@
 const pool = require('../config');
 
-const getUsers = async () => {
-    const result = await pool.query('SELECT * FROM users');
-    return result.rows;
-};
-
 const getUserById = async (id) => {
     const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [id]);
     return result.rows[0];
@@ -33,7 +28,6 @@ const deleteUser = async (id) => {
 };
 
 module.exports = {
-    getUsers,
     getUserById,
     createUser,
     updateUser,
