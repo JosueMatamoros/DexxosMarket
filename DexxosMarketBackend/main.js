@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer'); // API that saves files in a specific folder
 const path = require('path');
 const userRoutes = require('./routes/userRoutes');
 const productsRoutes = require('./routes/productsRoutes');

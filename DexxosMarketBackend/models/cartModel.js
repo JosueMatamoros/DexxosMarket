@@ -1,16 +1,11 @@
 const pool = require('../config');
 
-const getCartItems = async () => {
-    const result = await pool.query('SELECT * FROM cart');
+const getProductByUserId = async (user_id) => { // Get product by user id
+    const result = await pool.query('SELECT * FROM cart WHERE user_id = $1', [user_id]);
     return result.rows;
 };
 
-const getCartItemById = async (cart_item_id) => {
-    const result = await pool.query('SELECT * FROM cart WHERE cart_item_id = $1', [cart_item_id]);
-    return result.rows[0];
-};
-
-const createCartItem = async (cartItem) => {
+const createCartItem = async (cartItem) => { 
     const { user_id, product_id, quantity } = cartItem;
     const result = await pool.query(
         'INSERT INTO cart (user_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
@@ -19,22 +14,26 @@ const createCartItem = async (cartItem) => {
     return result.rows[0];
 };
 
-const updateCartItem = async (cart_item_id, cartItem) => {
+const updateCartItem = async (cartItem) => { // Update cart item
     const { user_id, product_id, quantity } = cartItem;
     const result = await pool.query(
-        'UPDATE cart SET user_id = $1, product_id = $2, quantity = $3 WHERE cart_item_id = $4 RETURNING *',
-        [user_id, product_id, quantity, cart_item_id]
+        'UPDATE cart SET quantity = $1 WHERE user_id = $2 AND product_id = $3 RETURNING *',
+        [quantity, user_id, product_id]
     );
     return result.rows[0];
 };
 
-const deleteCartItem = async (cart_item_id) => {
-    await pool.query('DELETE FROM cart WHERE cart_item_id = $1', [cart_item_id]);
+const deleteCartItem = async (user_id, product_id) => { // Delete cart item
+    const result = await pool.query('DELETE FROM cart WHERE user_id = $1 AND product_id = $2 RETURNING *', [
+        user_id,
+        product_id
+    ]);
+    return result.rows[0];
 };
 
 module.exports = {
-    getCartItems,
-    getCartItemById,
+
+    getProductByUserId,
     createCartItem,
     updateCartItem,
     deleteCartItem
