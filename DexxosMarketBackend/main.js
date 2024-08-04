@@ -7,7 +7,6 @@ const productsRoutes = require('./routes/productsRoutes');
 const ordersRoutes = require('./routes/ordersRoutes');
 const orderDetailsRoutes = require('./routes/orderDetailsRoutes');
 const cartRoutes = require('./routes/cartRoutes');
-const productImagesRoutes = require('./routes/productImagesRoutes');
 const app = express();
 const port = 5000;
 
@@ -19,7 +18,6 @@ app.use('/products', productsRoutes);
 app.use('/orders', ordersRoutes);
 app.use('/orderDetails', orderDetailsRoutes);
 app.use('/cart', cartRoutes);
-app.use('/productImages', productImagesRoutes);
 
 // Configurar Express para servir archivos estáticos desde la carpeta de assets
 const productsAssetsPath = path.join('../DexxosMarketFrontend/assets/products'); // Cambia esto a la ruta de tu carpeta assets

@@ -1,54 +1,51 @@
-const {
-    getProductByUserId,
-    createCartItem,
-    updateCartItem,
-    deleteCartItem
-} = require('../models/cartModel');
+const pool = require('../config');
 
-// Fetch all cart items by user_id
-const fetchCartItemsByUserId = async (req, res) => {
+const fetchCartByUserId = async (req, res) => {
     try {
-        const user_id = req.params.user_id; // Get user_id from route parameters
-        const cartItems = await getProductByUserId(user_id); // Pass user_id to the model function
-        res.json(cartItems);
+        const result = await pool.query('SELECT * FROM cart WHERE user_id = $1', [req.params.id]);
+        res.json(result.rows);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-// Add a new cart item
 const addCartItem = async (req, res) => {
     try {
-        const newCartItem = await createCartItem(req.body); // Create a new cart item with request body data
-        res.status(201).json(newCartItem);
+        const { user_id, product_id, quantity } = req.body;
+        const result = await pool.query(
+            'INSERT INTO cart (user_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
+            [user_id, product_id, quantity]
+        );
+        res.status(201).json(result.rows[0]);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-// Update a cart item
 const modifyCartItem = async (req, res) => {
     try {
-        const updatedCartItem = await updateCartItem(req.body); // Update cart item with request body data
-        res.json(updatedCartItem);
+        const { cart_item_id, quantity } = req.body;
+        const result = await pool.query(
+            'UPDATE cart SET quantity = $1 WHERE cart_item_id = $2 RETURNING *',
+            [quantity, cart_item_id]
+        );
+        res.json(result.rows[0]);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-// Delete a cart item
 const removeCartItem = async (req, res) => {
     try {
-        const { user_id, product_id } = req.params; // Get user_id and product_id from route parameters
-        const deletedCartItem = await deleteCartItem(user_id, product_id); // Delete cart item with the provided IDs
-        res.json(deletedCartItem);
+        await pool.query('DELETE FROM cart WHERE cart_item_id = $1', [req.params.id]);
+        res.status(204).send();
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
 module.exports = {
-    fetchCartItemsByUserId,
+    fetchCartByUserId,
     addCartItem,
     modifyCartItem,
     removeCartItem

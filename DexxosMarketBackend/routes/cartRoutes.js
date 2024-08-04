@@ -1,22 +1,23 @@
 const express = require('express');
-const router = express.Router();
 const {
-    fetchCartItemsByUserId,
+    fetchCartByUserId,
     addCartItem,
     modifyCartItem,
     removeCartItem
 } = require('../controllers/cartController');
 
-// Get all cart items by user_id
-router.get('/:user_id', fetchCartItemsByUserId);
+const router = express.Router();
 
-// Add a new item to cart
+// Get cart by user id
+router.get('/:id', fetchCartByUserId);
+
+// Add cart item
 router.post('/', addCartItem);
 
-// Update a cart item
+// Update cart item
 router.put('/', modifyCartItem);
 
-// Delete an item from cart
-router.delete('/:user_id/:product_id', removeCartItem);
+// Delete cart item
+router.delete('/:id', removeCartItem);
 
 module.exports = router;

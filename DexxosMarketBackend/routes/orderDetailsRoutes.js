@@ -1,18 +1,18 @@
 const express = require('express');
-const router = express.Router();
 const {
-    fetchProductsByOrderId,
-    removeProductFromOrder,
-    addProductToOrder
+    fetchOrderDetailsByOrderId,
+    addOrderDetails,
+    removeOrderDetail,
 } = require('../controllers/orderDetailController');
 
-// Get all products by order_id
-router.get('/:order_id', fetchProductsByOrderId);
+const router = express.Router();
 
-// Delete product from order
-router.delete('/:order_id/:product_id', removeProductFromOrder);
+// Get order details by order id
+router.get('/:id', fetchOrderDetailsByOrderId);
 
-// Add product to order
-router.post('/', addProductToOrder);
+// Add order details
+router.post('/', addOrderDetails);
+
+router.delete('/', removeOrderDetail);
 
 module.exports = router;
