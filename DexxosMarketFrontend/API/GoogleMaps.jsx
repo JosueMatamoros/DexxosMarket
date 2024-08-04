@@ -152,7 +152,7 @@ const GoogleMap = () => {
   const allDataAvailable = distance && duration && startLocation && endLocation;
 
   return (
-    <div className="w-4/5 mx-auto p-5">
+    <div className="w-screen mx-auto p-5">
       <div className="text-2xl font-semibold mb-4">Route Information</div>
     
       {allDataAvailable && (
