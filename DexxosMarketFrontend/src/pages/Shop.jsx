@@ -1,28 +1,25 @@
-import { useState, useMemo } from "react";
-import { Label, Checkbox, TextInput} from "flowbite-react";
-import cartLogo from "../../assets/cartLogo.jpg";
+import { useState, useEffect, useMemo } from "react";
+import { Label, Checkbox, TextInput } from "flowbite-react";
 import ProductCards from "../components/products/ProductCards";
+import axios from "axios"; // Asegúrate de tener axios instalado: npm install axios
 
 export default function Shop() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   
-  const products = [
-    {
-      id: 1,
-      name: "Manzanas Gala",
-      price: 2.99,
-      image: cartLogo,
-      category: "Frutas",
-    },
-    {
-      id: 2,
-      name: "Leche Entera",
-      price: 3.5,
-      image: cartLogo,
-      category: "Lácteos",
-    },
-  ];
+  // Fetch products from backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/products');
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
   
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
@@ -31,7 +28,7 @@ export default function Shop() {
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm, selectedCategories]);
+  }, [searchTerm, selectedCategories, products]);
   
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -61,7 +58,14 @@ export default function Shop() {
       </div>
       <div>
         <div className="mb-4">
-        <TextInput id="search" type="search" placeholder="Buscar productos..." required />
+          <TextInput 
+            id="search" 
+            type="search" 
+            placeholder="Buscar productos..." 
+            required 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product) => (
