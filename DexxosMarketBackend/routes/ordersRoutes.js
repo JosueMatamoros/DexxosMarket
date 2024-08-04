@@ -1,18 +1,26 @@
 const express = require('express');
-const router = express.Router();
 const {
-    fetchOrdersByUserId,
-    fetchOrderByBarcode,
-    addOrder
+    fetchOrderById,
+    addOrder,
+    modifyOrder,
+    removeOrder,
+    fetchOrderByBarcode
 } = require('../controllers/orderController');
 
-// Get all orders by user_id
-router.get('/user/:user_id', fetchOrdersByUserId);
+const router = express.Router();
 
-// Get order by barcode
-router.get('/barcode/:barcode', fetchOrderByBarcode);
+// Get order by id
+router.get('/:id', fetchOrderById);
 
-// Create a new order
+// Create new order
 router.post('/', addOrder);
+
+// Update order
+router.put('/:id', modifyOrder);
+
+// Delete order
+router.delete('/:id', removeOrder);
+
+router.get('/barcode/:barcode', fetchOrderByBarcode);
 
 module.exports = router;

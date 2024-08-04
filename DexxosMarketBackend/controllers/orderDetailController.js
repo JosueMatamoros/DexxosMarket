@@ -1,44 +1,47 @@
-const {
-    getProductsByOrderId,
-    deleteProductFromOrder,
-    createProductToOrder
-} = require('../models/orderDetailModel');
+const pool = require('../config');
 
-// Fetch all products by order_id
-const fetchProductsByOrderId = async (req, res) => {
+const fetchOrderDetailsByOrderId = async (req, res) => {
     try {
-        const order_id = req.params.order_id; // Get order_id from route parameters
-        const products = await getProductsByOrderId(order_id); // Pass order_id to the model function
-        res.json(products);
+        const result = await pool.query('SELECT * FROM order_details WHERE order_id = $1', [req.params.id]);
+        res.json(result.rows);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-// Delete product from order
-const removeProductFromOrder = async (req, res) => {
+const addOrderDetails = async (req, res) => {
     try {
-        const { order_id, product_id } = req.params; // Get order_id and product_id from route parameters
-        await deleteProductFromOrder(order_id, product_id); // Pass order_id and product_id to the model function
-        res.status(204).send();
+        const { product_id, order_id, quantity } = req.body;
+        const result = await pool.query(
+            'INSERT INTO order_details (product_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *',
+            [product_id, order_id, quantity]
+        );
+        res.status(201).json(result.rows[0]);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-// Add product to order
-const addProductToOrder = async (req, res) => {
+const removeOrderDetail = async (req, res) => {
     try {
-        const { order_id, product_id } = req.body; // Get order_id and product_id from request body
-        await createProductToOrder(order_id, product_id); // Pass order_id and product_id to the model function
-        res.status(201).send();
+        const { product_id, order_id } = req.body; // Obtener product_id y order_id del cuerpo de la solicitud
+        const result = await pool.query(
+            'DELETE FROM order_details WHERE product_id = $1 AND order_id = $2 RETURNING *',
+            [product_id, order_id]
+        );
+        if (result.rowCount > 0) {
+            res.status(204).send(); // Enviar respuesta sin contenido si se eliminó correctamente
+        } else {
+            res.status(404).send('Order detail not found'); // Enviar respuesta 404 si no se encontró la relación
+        }
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
+
 
 module.exports = {
-    fetchProductsByOrderId,
-    removeProductFromOrder,
-    addProductToOrder
+    fetchOrderDetailsByOrderId,
+    addOrderDetails,
+    removeOrderDetail,
 };
