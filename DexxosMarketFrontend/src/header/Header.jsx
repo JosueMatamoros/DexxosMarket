@@ -32,7 +32,7 @@ const Header = () => {
         <Navbar.Link as={Link} to="/account">
           Account
         </Navbar.Link>
-        <Navbar.Link as={Link} to="/locales">
+        <Navbar.Link as={Link} to="/locations">
          Puntos de Venta
         </Navbar.Link>
       </Navbar.Collapse>

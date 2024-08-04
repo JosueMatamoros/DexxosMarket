@@ -1,6 +1,5 @@
 const express = require('express');
 const {
-    fetchUsers,
     fetchUserById,
     addUser,
     modifyUser,
@@ -8,9 +7,6 @@ const {
 } = require('../controllers/userController');
 
 const router = express.Router();
-
-// Get all users
-router.get('/', fetchUsers);
 
 // Get user by id
 router.get('/:id', fetchUserById);

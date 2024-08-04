@@ -1,19 +1,9 @@
 const {
-    getUsers,
     getUserById,
     createUser,
     updateUser,
     deleteUser
 } = require('../models/userModel');
-
-const fetchUsers = async (req, res) => {
-    try {
-        const users = await getUsers();
-        res.json(users);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
 
 const fetchUserById = async (req, res) => {
     try {
@@ -52,7 +42,6 @@ const removeUser = async (req, res) => {
 };
 
 module.exports = {
-    fetchUsers,
     fetchUserById,
     addUser,
     modifyUser,

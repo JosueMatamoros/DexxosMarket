@@ -1,49 +1,44 @@
 const {
-    getOrderDetails,
-    getOrderDetailById,
-    createOrderDetail,
-    deleteOrderDetail
+    getProductsByOrderId,
+    deleteProductFromOrder,
+    createProductToOrder
 } = require('../models/orderDetailModel');
 
-const fetchOrderDetails = async (req, res) => {
+// Fetch all products by order_id
+const fetchProductsByOrderId = async (req, res) => {
     try {
-        const orderDetails = await getOrderDetails();
-        res.json(orderDetails);
+        const order_id = req.params.order_id; // Get order_id from route parameters
+        const products = await getProductsByOrderId(order_id); // Pass order_id to the model function
+        res.json(products);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-const fetchOrderDetailById = async (req, res) => {
+// Delete product from order
+const removeProductFromOrder = async (req, res) => {
     try {
-        const orderDetail = await getOrderDetailById(req.params.order_id, req.params.product_id);
-        res.json(orderDetail);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
-
-const addOrderDetail = async (req, res) => {
-    try {
-        const newOrderDetail = await createOrderDetail(req.body);
-        res.status(201).json(newOrderDetail);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
-
-const removeOrderDetail = async (req, res) => {
-    try {
-        await deleteOrderDetail(req.params.order_id, req.params.product_id);
+        const { order_id, product_id } = req.params; // Get order_id and product_id from route parameters
+        await deleteProductFromOrder(order_id, product_id); // Pass order_id and product_id to the model function
         res.status(204).send();
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
+// Add product to order
+const addProductToOrder = async (req, res) => {
+    try {
+        const { order_id, product_id } = req.body; // Get order_id and product_id from request body
+        await createProductToOrder(order_id, product_id); // Pass order_id and product_id to the model function
+        res.status(201).send();
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 module.exports = {
-    fetchOrderDetails,
-    fetchOrderDetailById,
-    addOrderDetail,
-    removeOrderDetail
+    fetchProductsByOrderId,
+    removeProductFromOrder,
+    addProductToOrder
 };
