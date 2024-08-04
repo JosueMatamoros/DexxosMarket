@@ -1,7 +1,7 @@
 const {
     getImageByProductId,
     addProductImage
-} = require('../models/productImages.js');
+} = require('../models/productImagesModel.js');
 
 const fetchImageByProductId = async (req, res) => {
     try {

@@ -6,9 +6,9 @@ const {
 } = require('../controllers/productImageController'); // Asegúrate de que la ruta sea correcta
 
 // Get image by product id
-router.get('/:id/image', getImageByProductId);
+router.get('/:id', getImageByProductId);
 
 // Add new image for product
-router.post('/:id/image', addProductImage);
+router.post('/:id', addProductImage);
 
 module.exports = router;
