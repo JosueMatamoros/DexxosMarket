@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import { Label, Checkbox, TextInput} from "flowbite-react";
-import ProductCard from "../components/shop/ProductCard";
 import cartLogo from "../../assets/cartLogo.jpg";
 import ProductCards from "../components/products/ProductCards";
 
