@@ -12,6 +12,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
     "axios": "^1.7.3",
+    "firebase": "^10.12.5",
     "flowbite-react": "^0.10.1",
     "framer-motion": "^11.3.21",
     "react": "^18.3.1",

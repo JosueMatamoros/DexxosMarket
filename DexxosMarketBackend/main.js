@@ -13,6 +13,12 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
+// Añadir la cabecera Cross-Origin-Opener-Policy
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    next();
+});
+
 app.use('/users', userRoutes);
 app.use('/products', productsRoutes);
 app.use('/orders', ordersRoutes);

@@ -11,14 +11,16 @@ node_modules
 dist
 dist-ssr
 *.local
-
+.firebaseConfig.js
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
+.package-lock.json
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
