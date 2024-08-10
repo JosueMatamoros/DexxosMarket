@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, DarkThemeToggle } from 'flowbite-react';
-import { useThemeMode } from 'flowbite-react';
+import { useThemeMode, Button  } from 'flowbite-react';
+import { LuUser2 } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -18,7 +19,10 @@ const Header = () => {
       <Navbar.Brand href="#">
         <CodeIcon className={`w-8 h-8 ml-2 ${isDarkMode ? 'text-white' : 'text-black'}`} />
       </Navbar.Brand>
-      <div className="flex md:order-2">
+      <div className="flex md:order-2 items-center space-x-2">
+      <Link to="/login">
+          <LuUser2 className="w-6 h-6 cursor-pointer" />
+        </Link>
         <DarkThemeToggle checked={isDarkMode} onChange={toggleMode} />
         <Navbar.Toggle />
       </div>

@@ -1,56 +1,36 @@
 // AuthProvider.js
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, signInWithRedirect, GoogleAuthProvider, GithubAuthProvider, signOut } from 'firebase/auth';
-import app from '../../firebaseConfig';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import auth0Config from '../../Auth0';
 
 const AuthContext = createContext(); // Creación del contexto
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const { loginWithRedirect, logout, user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
-            setUser(user);
-        });
-        return () => unsubscribe();
-    }, []);
-
-    const signInWithGoogle = async () => {
-      const provider = new GoogleAuthProvider();
-      try {
-          await signInWithRedirect(getAuth(app), provider);
-      } catch (error) {
-          if (error.code === 'auth/cancelled-popup-request') {
-              console.log('Popup request was cancelled due to multiple attempts.');
-          } else {
-              console.error(error);
-          }
-      }
-  };
-
-  const signInWithGitHub = async () => {
-      const provider = new GithubAuthProvider();
-      try {
-          await signInWithRedirect(getAuth(app), provider);
-      } catch (error) {
-          if (error.code === 'auth/cancelled-popup-request') {
-              console.log('Popup request was cancelled due to multiple attempts.');
-          } else {
-              console.error(error);
-          }
-      }
-  };
-
-    const logOut = () => {
-        return signOut(getAuth(app));
+    // Lógica adicional o métodos personalizados pueden añadirse aquí
+    const login = async () => {
+        await loginWithRedirect();
     };
 
-    return (
-        <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGitHub, logOut }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+    const logoutUser = () => {
+        logout({ returnTo: window.location.origin });
+    };
 
-export default AuthProvider;
-export { AuthContext }; // Asegúrate de exportar AuthContext
+    const contextValue = {
+        login,
+        logoutUser,
+        user,
+        isAuthenticated,
+        isLoading,
+        getAccessTokenSilently,
+      };
+
+    return (
+        <Auth0Provider domain={auth0Config.domain} clientId={auth0Config.clientId} clienSecret={auth0Config.clientSecret} audience={auth0Config.audience} redirectUri={auth0Config.redirectUri} scope={auth0Config.scope} authorizationParams={window.location.origin} >
+            <AuthContext.Provider value={contextValue}>
+                {children}
+            </AuthContext.Provider>
+        </Auth0Provider>
+    );
+}
