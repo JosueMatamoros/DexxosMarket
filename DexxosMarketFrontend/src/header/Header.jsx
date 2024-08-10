@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navbar, DarkThemeToggle } from 'flowbite-react';
-import { useThemeMode, Button  } from 'flowbite-react';
+import { Navbar, DarkThemeToggle, Dropdown } from 'flowbite-react';
+import { useThemeMode } from 'flowbite-react';
 import { LuUser2 } from "react-icons/lu";
 import { Link } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";  // Importa el hook de Auth0
 
 const Header = () => {
   const { mode, toggleMode } = useThemeMode();
+  const { isAuthenticated, user, logout } = useAuth0();  // Obtén el estado de autenticación, usuario y logout
 
   // Determina si el modo oscuro está activado
   const isDarkMode = mode === 'dark';
@@ -20,9 +22,36 @@ const Header = () => {
         <CodeIcon className={`w-8 h-8 ml-2 ${isDarkMode ? 'text-white' : 'text-black'}`} />
       </Navbar.Brand>
       <div className="flex md:order-2 items-center space-x-2">
-      <Link to="/login">
-          <LuUser2 className="w-6 h-6 cursor-pointer" />
-        </Link>
+        <Dropdown
+          label={
+            isAuthenticated ? (
+              <img
+                src={user.picture}
+                alt={user.name}
+                className="w-8 h-8 rounded-full cursor-pointer"
+              />
+            ) : (
+              <LuUser2 className="w-6 h-6 cursor-pointer" />
+            )
+          }
+          inline={true}
+        >
+          {isAuthenticated ? (
+            <>
+              <Dropdown.Item as={Link} to="/account">
+                Account
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
+                Log Out
+              </Dropdown.Item>
+            </>
+          ) : (
+            <Dropdown.Item as={Link} to="/login">
+              Log In
+            </Dropdown.Item>
+          )}
+        </Dropdown>
         <DarkThemeToggle checked={isDarkMode} onChange={toggleMode} />
         <Navbar.Toggle />
       </div>
@@ -33,11 +62,8 @@ const Header = () => {
         <Navbar.Link as={Link} to="/shop">
           Shop
         </Navbar.Link>
-        <Navbar.Link as={Link} to="/account">
-          Account
-        </Navbar.Link>
         <Navbar.Link as={Link} to="/locations">
-         Puntos de Venta
+          Puntos de Venta
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
