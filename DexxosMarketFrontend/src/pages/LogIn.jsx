@@ -27,7 +27,6 @@ export default function LogIn() {
             </div>
             <div className="grid gap-4">
               <LoginButton />
-              <LogoutButton />
             </div>
             {/* Mostrar los datos del usuario autenticado */}
             {isLoading && <div>Loading...</div>}
