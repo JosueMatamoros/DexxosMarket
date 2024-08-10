@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import PersonalInformation from "../account/PersonalInformation";
 
 export default function Account() {
   const [selectedView, setSelectedView] = useState("Account");
   const [selectedOption, setSelectedOption] = useState("Personal Information");
-  const { user, isAuthenticated, isLoading } = useAuth0();
 
   const renderContent = () => {
     if (selectedView === "Account") {

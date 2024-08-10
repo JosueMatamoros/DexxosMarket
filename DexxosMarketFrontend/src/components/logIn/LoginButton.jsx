@@ -7,7 +7,7 @@ export default function LoginButton() {
 
     const handleLogin = () => {
         loginWithRedirect({
-            redirectUri: 'http://localhost:5173/account',
+            redirectUri: 'http://localhost:5173/intermediate',
         });
     };
 

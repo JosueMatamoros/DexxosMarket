@@ -7,7 +7,7 @@ export default function Shop() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  
+
   // Fetch products from backend
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,7 +20,7 @@ export default function Shop() {
     };
     fetchProducts();
   }, []);
-  
+
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
@@ -29,7 +29,7 @@ export default function Shop() {
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }, [searchTerm, selectedCategories, products]);
-  
+
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
@@ -37,9 +37,9 @@ export default function Shop() {
       setSelectedCategories([...selectedCategories, category]);
     }
   };
-  
+
   const categories = [...new Set(products.map((product) => product.category))];
-  
+
   return (
     <div className="grid md:grid-cols-[240px_1fr] gap-6 p-4 md:p-6">
       <div className="bg-muted/40 rounded-lg p-4 md:p-6">
@@ -58,11 +58,11 @@ export default function Shop() {
       </div>
       <div>
         <div className="mb-4">
-          <TextInput 
-            id="search" 
-            type="search" 
-            placeholder="Buscar productos..." 
-            required 
+          <TextInput
+            id="search"
+            type="search"
+            placeholder="Buscar productos..."
+            required
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -70,7 +70,7 @@ export default function Shop() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product) => (
             <ProductCards
-              key={product.id}
+              key={product.id || product.name}  // Asegúrate de que `product.id` sea único o usa un valor alternativo como `product.name`
               imgSrc={product.image}
               imgAlt={product.name}
               name={product.name}
