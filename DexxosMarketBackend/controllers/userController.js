@@ -4,6 +4,9 @@ const pool = require('../config');
 const fetchUserById = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [req.params.id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
         res.json(result.rows[0]);
     } catch (error) {
         res.status(500).send(error.message);
@@ -12,42 +15,31 @@ const fetchUserById = async (req, res) => {
 
 const addUser = async (req, res) => {
     try {
-        const { first_name, last_name1, last_name2, gender, email, password, role } = req.body;
+        const { user_id, email, name } = req.body;
+
+        // Verifica si el usuario ya está registrado
+        const userExists = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
+
+        if (userExists.rows.length > 0) {
+            // Si el usuario ya existe, devuelve una respuesta sin volver a registrarlo
+            return res.status(200).json({ message: 'User already registered', user: userExists.rows[0] });
+        }
+
+        // Si el usuario no existe, lo registra
         const result = await pool.query(
-            'INSERT INTO users (first_name, last_name1, last_name2, gender, email, password, role) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-            [first_name, last_name1, last_name2, gender, email, password, role]
+            'INSERT INTO users (user_id, email, name) VALUES ($1, $2, $3) RETURNING *',
+            [user_id, email, name]
         );
+
         res.status(201).json(result.rows[0]);
     } catch (error) {
-        res.status(500).send(error.message);
+        console.error('Error registering user:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
-const modifyUser = async (req, res) => {
-    try {
-        const { first_name, last_name1, last_name2, gender, email, password, role } = req.body;
-        const result = await pool.query(
-            'UPDATE users SET first_name = $1, last_name1 = $2, last_name2 = $3, gender = $4, email = $5, password = $6, role = $7 WHERE user_id = $8 RETURNING *',
-            [first_name, last_name1, last_name2, gender, email, password, role, req.params.id]
-        );
-        res.json(result.rows[0]);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
-
-const removeUser = async (req, res) => {
-    try {
-        await pool.query('DELETE FROM users WHERE user_id = $1', [req.params.id]);
-        res.status(204).send();
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
 
 module.exports = {
     fetchUserById,
-    addUser,
-    modifyUser,
-    removeUser
+    addUser
 };
