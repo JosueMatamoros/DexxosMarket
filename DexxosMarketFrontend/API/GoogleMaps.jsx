@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { motion } from "framer-motion";
-import { Label, Card } from "flowbite-react";
+import { Card } from "flowbite-react";
+
 
 const GoogleMap = () => {
   const mapRef = useRef(null);
@@ -78,7 +79,7 @@ const GoogleMap = () => {
           setDirectionsRenderer(directionsRendererInstance);
 
           const icon = {
-            url: "https://cdn.discordapp.com/attachments/1138655103801360424/1269340245896462397/supermarket.png?ex=66afb4b9&is=66ae6339&hm=961585b991ad7ec90b8d2000f241e79b4b607822be8c3c8af2d5c78c29c25f89&", // URL of the supermarket icon
+            url: "https://cdn-icons-png.flaticon.com/512/2838/2838912.png",
             scaledSize: new window.google.maps.Size(32, 32),
           };
 
@@ -151,16 +152,21 @@ const GoogleMap = () => {
 
   const allDataAvailable = distance && duration && startLocation && endLocation;
 
+  const handleLocationClick = (location) => {
+    map.setCenter({ lat: location.lat, lng: location.lng });
+    map.setZoom(15);
+    setEndLocation(location);
+  };
+
   return (
-    <div className="w-screen mx-auto p-5">
-      <div className="text-2xl font-semibold mb-4">Route Information</div>
-    
+    <div className="w-screen mx-auto">
+      {/* Mostrar este fragmento solo en pantallas menores a lg */}
       {allDataAvailable && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-row space-x-4 mt-4"
+          className="flex flex-row space-x-4 mt-4 lg:hidden"
         >
           <div className="shadow-md rounded-lg flex-shrink-0 p-4">
             <h4 className="text-lg font-semibold">Distance</h4>
@@ -186,10 +192,73 @@ const GoogleMap = () => {
         </motion.div>
       )}
 
-      <div
-        ref={mapRef}
-        style={{ width: "100%", height: "450px", marginTop: "20px" }}
-      ></div>
+      <div className="flex h-screen">
+        <div className="flex-1">
+          <div ref={mapRef} className="h-full w-full"></div>
+        </div>
+        {/* Sidebar: Solo visible en pantallas grandes (lg o mayores) */}
+        <Card className="hidden lg:block w-3/12 transition-colors duration-500 ease-in-out border-0 ">
+          {allDataAvailable && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="text-2xl font-semibold mb-4">
+                Route Information
+              </div>
+              <div className="flex justify-between ">
+                <h4 className="text-lg font-semibold">Distance</h4>
+                <div className="text-xl font-medium">
+                  <span id="distance">{distance}</span>
+                </div>
+              </div>
+              <div className="flex justify-between mt-4">
+                <h4 className="text-lg font-semibold">ETA</h4>
+                <div className="text-xl font-medium">
+                  <span id="eta">{duration}</span>
+                </div>
+              </div>
+              <div className="flex justify-between mt-4">
+                <h4 className="text-lg font-semibold">Departure</h4>
+                <div className="text-xl font-medium">
+                  <span id="departure">Current Location</span>
+                </div>
+              </div>
+              <div className="flex justify-between mt-4">
+                <h4 className="text-lg font-semibold">Arrival</h4>
+                <div className="text-xl font-medium">
+                  <span id="arrival">{endLocation.title}</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+          <h4 className="text-2xl font-semibold mt-8">Locales</h4>
+          <div className="space-y-4">
+            {locations.map((location) => (
+              <button
+                key={location.title}
+                onClick={() => handleLocationClick(location)}
+                className="flex items-center justify-between w-full p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition text-gray-700 px-4"
+              >
+                <span>{location.title}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-500"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            ))}
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
