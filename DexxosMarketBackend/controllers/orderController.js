@@ -55,18 +55,32 @@ const fetchOrderById = async (req, res) => {
 const addOrder = async (req, res) => {
     const client = await pool.connect();
     try {
-        const { user_id } = req.body;
+        // Aquí debes obtener el user_id de los parámetros de la URL
+        const { user_id } = req.params;
+
+        console.log('User ID:', user_id); // Verificar que el user_id se está recibiendo correctamente
 
         // Generar el barcode utilizando uuid
-        const barcode = uuidv4(); // Esto generará un SKU único y aleatorio
+        const barcode = uuidv4();
         console.log('Barcode:', barcode);
 
+        // Validar que el user_id esté presente
+        if (!user_id) {
+            return res.status(400).json({ message: "User ID is required to create an order." });
+        }
+
         // Obtener todos los artículos del carrito
+        console.log('Fetching cart items for user:', user_id);
         const cartItemsResult = await client.query(
             'SELECT product_id, quantity FROM cart WHERE user_id = $1',
             [user_id]
         );
         const cartItems = cartItemsResult.rows;
+
+        // Validar que el carrito no esté vacío
+        if (cartItems.length === 0) {
+            return res.status(400).json({ message: "Cart is empty. Cannot create an order." });
+        }
 
         // Calcular el precio total
         let total_price = 0;
@@ -78,8 +92,8 @@ const addOrder = async (req, res) => {
             total_price += productResult.rows[0].price * item.quantity;
         }
 
-        // Define el shipping price (puede ser una constante o basada en alguna lógica)
-        const shipping_price = 5.00; // Ejemplo de un valor fijo
+        // Define el shipping price
+        const shipping_price = 5.00;
 
         // Iniciar transacción
         await client.query('BEGIN');
@@ -109,11 +123,13 @@ const addOrder = async (req, res) => {
     } catch (error) {
         // Revertir la transacción en caso de error
         await client.query('ROLLBACK');
+        console.error('Error creating order:', error.message);
         res.status(500).send(error.message);
     } finally {
         client.release();
     }
 };
+
 
 const removeOrder = async (req, res) => {
     try {

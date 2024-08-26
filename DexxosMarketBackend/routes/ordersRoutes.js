@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/:user_id', fetchOrderById);
 
 // Create new order
-router.post('/', addOrder);
+router.post('/:user_id', addOrder);
 
 // Update order
 router.put('/:id', modifyOrder);

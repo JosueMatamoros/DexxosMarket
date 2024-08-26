@@ -11,7 +11,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import auth0Config from '../Auth0';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <BrowserRouter>
       <Flowbite>
         <CartProvider>
@@ -31,5 +30,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </CartProvider>
       </Flowbite>
     </BrowserRouter>
-  </React.StrictMode>
 );
