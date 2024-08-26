@@ -1,12 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 import { Label, Checkbox, TextInput } from "flowbite-react";
 import ProductCards from "../components/products/ProductCards";
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios"; // Asegúrate de tener axios instalado: npm install axios
 
 export default function Shop() {
+  const { user } = useAuth0();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
+
 
   // Fetch products from backend
   useEffect(() => {
@@ -70,11 +73,12 @@ export default function Shop() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product) => (
             <ProductCards
-              key={product.id || product.name}  // Asegúrate de que `product.id` sea único o usa un valor alternativo como `product.name`
+              key={product.product_id}  // Asegúrate de que `product.id` sea único o usa un valor alternativo como `product.name`
               imgSrc={product.image}
               imgAlt={product.name}
               name={product.name}
               price={product.price}
+              product_id={product.product_id}
             />
           ))}
         </div>
