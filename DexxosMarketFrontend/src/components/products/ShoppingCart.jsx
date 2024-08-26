@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Drawer } from "flowbite-react";
+import { Drawer, Button } from "flowbite-react";
 import { BsCart2 } from "react-icons/bs";
 import ItemCart from './ItemCart';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,6 +17,11 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
         }
     }, [user, fetchCartItems]);
 
+    // Calcula el precio total
+    const totalPrice = cartItems.reduce((total, item) => {
+        return total + (item.price * item.quantity);
+    }, 0);
+
 
     return (
         <Drawer open={isOpen} onClose={toggleDrawer} position="right">
@@ -33,6 +38,16 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
                             product_id={item.product_id}
                         />
                     ))}
+                </div>
+                {/* Sección para el precio total y el botón de pagar */}
+                <div className="mt-4 p-4 border-t">
+                    <div className="flex justify-between items-center mb-4">
+                        <span className="text-lg font-semibold">Total:</span>
+                        <span className="text-lg font-semibold">₡{totalPrice.toFixed(2)}</span>
+                    </div>
+                    <Button className="w-full" onClick={() => alert('Proceed to payment')}>
+                        Pagar
+                    </Button>
                 </div>
             </Drawer.Items>
         </Drawer>
