@@ -21,7 +21,7 @@ CREATE TABLE products (
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
-    user_id INT,
+    user_id varchar,
     barcode VARCHAR(50),
     total_price DECIMAL(10, 2),
     shipping_price DECIMAL(10, 2),
@@ -32,6 +32,7 @@ CREATE TABLE orders (
 CREATE TABLE order_details (
     product_id INT,
     order_id INT,
+    quantity INT,
     PRIMARY KEY (product_id, order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE

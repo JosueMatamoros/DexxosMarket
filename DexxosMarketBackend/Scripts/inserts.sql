@@ -12,3 +12,7 @@ TRUNCATE TABLE cart RESTART IDENTITY;
 
 SELECT * FROM cart WHERE user_id = 'google-oauth2|111876327150807114887';
 
+
+
+
+
