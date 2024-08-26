@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import OrderCard from "../account/OrderCard";
-import { Link } from 'react-router-dom';
+import { Breadcrumb } from "flowbite-react";
+import { HiHome } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Account() {
   const { user } = useAuth0();
@@ -13,6 +16,7 @@ export default function Account() {
         const response = await fetch(`http://localhost:5000/orders/${user.sub}`);
         const data = await response.json();
         console.log(data);
+        
 
         // Verifica si `data` es un array antes de setearlo
         if (Array.isArray(data)) {
@@ -32,10 +36,20 @@ export default function Account() {
   }, [user]);
 
   return (
-    <div className="orders-container">
-      {orders.map((order) => (
-        <OrderCard key={order.order_id} order={order} />
-      ))}
+    <div className="account-page mt-3">
+      <Breadcrumb aria-label="Default breadcrumb example">
+        <Breadcrumb.Item href="/" icon={HiHome}>
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="/account">Account</Breadcrumb.Item>
+        <Breadcrumb.Item>Orders</Breadcrumb.Item>
+      </Breadcrumb>
+      
+      <div className="orders-container mt-5">
+        {orders.map((order) => (
+          <OrderCard key={order.order_id} order={order} />
+        ))}
+      </div>
     </div>
   );
 }
