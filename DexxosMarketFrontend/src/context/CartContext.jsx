@@ -12,11 +12,18 @@ export const CartProvider = ({ children }) => {
         try {
             const response = await axios.get(`http://localhost:5000/cart/${user_id}`);
             console.log('Response from fetching cart items:', response.data);
-            setCartItems(response.data);
+    
+            if (response.data && response.data.length > 0) {
+                setCartItems(response.data);
+            } else {
+                console.warn('No products found in the cart.');
+                setCartItems([]); // O manejarlo de otra manera, por ejemplo, establecer un estado de vacío
+            }
         } catch (error) {
             console.error('Error fetching cart items:', error);
+            setCartItems([]); // También puedes manejar el estado en caso de error
         }
-    }, []);
+    }, [setCartItems]);
 
     const addToCart = async (user_id, product_id, quantity) => {
         try {

@@ -2,7 +2,6 @@ const pool = require('../config');
 
 const fetchCartByUserId = async (req, res) => {
     try {
-        console(req.params.id)
         const query = `
             SELECT 
                 cart.product_id, 

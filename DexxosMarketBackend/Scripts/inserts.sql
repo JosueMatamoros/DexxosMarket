@@ -8,7 +8,12 @@ VALUES
     ('google-oauth2|107418319556598660453', 1, 2),
     ('google-oauth2|107418319556598660453', 2, 3);
 
-TRUNCATE TABLE cart RESTART IDENTITY;
+TRUNCATE TABLE orders RESTART IDENTITY cascade ;
 
 SELECT * FROM cart WHERE user_id = 'google-oauth2|111876327150807114887';
+
+drop table order_details cascade ;
+
+
+
 

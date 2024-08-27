@@ -4,6 +4,7 @@ import { BsCart2 } from "react-icons/bs";
 import ItemCart from './ItemCart';
 import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from '../../context/CartContext';
+import ConfirmationModal from './ConfirmationModal';
 import axios from "axios";
 
 export default function ShoppingCart({ isOpen, toggleDrawer }) {
@@ -45,9 +46,10 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
                         <span className="text-lg font-semibold">Total:</span>
                         <span className="text-lg font-semibold">₡{totalPrice.toFixed(2)}</span>
                     </div>
-                    <Button className="w-full" onClick={() => alert('Proceed to payment')}>
-                        Pagar
-                    </Button>
+                    {/*Centrar el Confirmation Modal*/}
+                    <div className="flex justify-center">
+                        <ConfirmationModal />
+                    </div>
                 </div>
             </Drawer.Items>
         </Drawer>
