@@ -1,0 +1,17 @@
+{
+    "orderCard": {
+      "orderTitle": "注文",
+      "trackOrder": "注文を追跡",
+      "moreOptions": "その他",
+      "edit": "編集",
+      "export": "エクスポート",
+      "trash": "削除",
+      "orderDetails": "注文の詳細",
+      "subtotal": "小計",
+      "shipping": "配送",
+      "total": "合計",
+      "updated": "更新日",
+      "updatedDate": "2023年11月23日"
+    }
+  }
+  

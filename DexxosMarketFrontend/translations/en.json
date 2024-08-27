@@ -1,0 +1,17 @@
+{
+    "orderCard": {
+      "orderTitle": "Order",
+      "trackOrder": "Track Order",
+      "moreOptions": "More",
+      "edit": "Edit",
+      "export": "Export",
+      "trash": "Trash",
+      "orderDetails": "Order Details",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total",
+      "updated": "Updated",
+      "updatedDate": "November 23, 2023"
+    }
+  }
+  
