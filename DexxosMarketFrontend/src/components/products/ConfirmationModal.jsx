@@ -3,13 +3,14 @@ import { Button, Modal } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export default function ConfirmationModal() {
+export default function ConfirmationModal({ isOpen, toggleDrawer }) {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation(); // Hook de i18next para traducciones
 
   const handlePurchase = () => {
     // Redirige al usuario a la página de "Thanks" cuando hace clic en comprar
+    toggleDrawer();
     setOpenModal(false);
     navigate('/thanks');
   };
