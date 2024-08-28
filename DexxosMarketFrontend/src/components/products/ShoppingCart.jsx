@@ -48,7 +48,7 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
                     </div>
                     {/*Centrar el Confirmation Modal*/}
                     <div className="flex justify-center">
-                        <ConfirmationModal />
+                    <ConfirmationModal isOpen={isOpen} toggleDrawer={toggleDrawer} />
                     </div>
                 </div>
             </Drawer.Items>

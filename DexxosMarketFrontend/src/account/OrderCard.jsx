@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button, Dropdown, Pagination } from 'flowbite-react';
 import { useTranslation } from 'react-i18next';
+import { useThemeMode } from 'flowbite-react';
 
 export default function OrderCard({ order }) {
   const { t } = useTranslation();
+  const { mode } = useThemeMode();
+
+  const isDarkMode = mode === 'dark';
+
+  const [selectedOption, setSelectedOption] = useState('Dexxos Market');
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+  };
 
   return (
     <Card className="overflow-hidden">
-      <div className="flex justify-between items-start p-4 bg-gray-100">
+      <div className={`flex justify-between items-start p-4 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
         <div>
           <h5 className="text-lg font-bold">{t('orderCard.orderTitle')} {order.order_id}</h5>
           <p className="text-sm text-gray-500">Date: {new Date().toLocaleDateString()}</p>
@@ -16,16 +26,24 @@ export default function OrderCard({ order }) {
           <Button size="sm" outline>
             {t('orderCard.trackOrder')}
           </Button>
-          <Dropdown label={t('orderCard.moreOptions')} dismissOnClick={false}>
-            <Dropdown.Item>
-              {t('orderCard.edit')}
+          <Dropdown label={selectedOption} dismissOnClick={false}>
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market')}>
+              Dexxos Market
             </Dropdown.Item>
-            <Dropdown.Item>
-              {t('orderCard.export')}
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market #2')}>
+              Dexxos Market #2
             </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>
-              {t('orderCard.trash')}
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market #3')}>
+              Dexxos Market #3
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market #4')}>
+              Dexxos Market #4
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market #5')}>
+              Dexxos Market #5
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSelect('Dexxos Market #6')}>
+              Dexxos Market #6
             </Dropdown.Item>
           </Dropdown>
         </div>
@@ -57,7 +75,7 @@ export default function OrderCard({ order }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center p-4 bg-gray-100">
+      <div className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
         <p className="text-xs text-gray-500">
           {t('orderCard.updated')} <time dateTime="2023-11-23">{t('orderCard.updatedDate')}</time>
         </p>

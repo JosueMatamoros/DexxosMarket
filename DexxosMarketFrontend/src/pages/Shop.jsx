@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { Label, Checkbox, TextInput } from "flowbite-react";
+import { Label, Checkbox, TextInput, Breadcrumb } from "flowbite-react";
+import { HiHome } from "react-icons/hi";
 import ProductCards from "../components/products/ProductCards";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios"; // Asegúrate de tener axios instalado: npm install axios
@@ -44,7 +45,17 @@ export default function Shop() {
   const categories = [...new Set(products.map((product) => product.category))];
 
   return (
+    <>
+    <div className="ml-3 mt-3">
+    <Breadcrumb aria-label="Default breadcrumb example">
+        <Breadcrumb.Item href="/" icon={HiHome}>
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="/account">Shop</Breadcrumb.Item>
+      </Breadcrumb>
+    </div>
     <div className="grid md:grid-cols-[240px_1fr] gap-6 p-4 md:p-6">
+
       <div className="bg-muted/40 rounded-lg p-4 md:p-6">
         <h2 className="text-lg font-semibold mb-4">Categorías</h2>
         <div className="grid gap-2">
@@ -84,5 +95,6 @@ export default function Shop() {
         </div>
       </div>
     </div>
+    </>
   );
 }

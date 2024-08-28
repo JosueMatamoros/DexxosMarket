@@ -4,12 +4,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ConfirmationModal() {
+export default function ConfirmationModal({ isOpen, toggleDrawer }) {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
   const handlePurchase = () => {
     // Redirige al usuario a la página de "Thanks" cuando hace clic en comprar
+    toggleDrawer();
     setOpenModal(false);
     navigate('/thanks');
   
