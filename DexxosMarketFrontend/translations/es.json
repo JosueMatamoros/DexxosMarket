@@ -104,6 +104,19 @@
   "barcodeModal": {
     "generatedBarcode": "Código de Barras Generado",
     "close": "Cerrar"
+  },
+
+  "googleMap": {
+    "distance": "Distancia",
+    "eta": "ETA",
+    "departure": "Ubicación",
+    "arrival": "Destino",
+    "currentLocation": "Ubicación Actual",
+    "routeInfo": "Información de Ruta",
+    "location": "Ubicación",
+    "destination": "Destino",
+    "stores": "Locales",
+    "openGoogleMaps": "Abrir Google Maps"
   }
 }
   

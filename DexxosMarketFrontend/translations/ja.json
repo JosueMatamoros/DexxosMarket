@@ -79,7 +79,7 @@
   },
 
   "home": {
-    "headline": "Dexxosマーケット: 信頼できるスーパーマーケット",
+    "headline": "Dexxos Market: 信頼できるスーパーマーケット",
     "subheadline": "当店では、豊富な新鮮で高品質な製品を取り揃えています。優れたサービスと競争力のある価格をお楽しみください。",
     "deliveryTitle": "自宅配達",
     "deliveryDescription": "購入品を自宅に配達してもらう便利さをお楽しみください。私たちの自宅配達サービスは迅速で信頼性があります。",
@@ -104,6 +104,19 @@
   "barcodeModal": {
     "generatedBarcode": "生成されたバーコード",
     "close": "閉じる"
+  },
+
+  "googleMap": {
+    "distance": "距離",
+    "eta": "到着予定時刻",
+    "departure": "出発",
+    "arrival": "到着",
+    "currentLocation": "現在地",
+    "routeInfo": "ルート情報",
+    "location": "位置",
+    "destination": "目的地",
+    "stores": "店舗",
+    "openGoogleMaps": "Googleマップを開く"
   }
 }
   
