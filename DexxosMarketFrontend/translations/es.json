@@ -41,6 +41,38 @@
       "confirmationMessage": "¿Estás seguro de que deseas comprar los artículos en tu carrito?",
       "yesBuyNow": "Sí, comprar ahora",
       "noCancel": "No, cancelar"
+    },
+    
+
+
+
+    "account": {
+      "home": "Inicio",
+      "account": "Cuenta",
+      "orders": "Órdenes"
+    },
+
+    "home": {
+      "headline": "Dexxos Market: Tu Supermercado de Confianza",
+      "subheadline": "Encuentra una amplia variedad de productos frescos y de calidad en nuestras tiendas. Disfruta de un servicio excepcional y precios competitivos.",
+      "deliveryTitle": "Entrega a Domicilio",
+      "deliveryDescription": "Disfruta de la comodidad de recibir tus compras en tu hogar. Nuestro servicio de entrega a domicilio es rápido y confiable.",
+      "pickupTitle": "Recogida en Tienda",
+      "pickupDescription": "Si lo prefieres, puedes recoger tus compras en cualquiera de nuestras tiendas. ¡Rápido y sin filas!",
+      "rewardsTitle": "Programa de Recompensas",
+      "rewardsDescription": "Únete a nuestro programa de recompensas y disfruta de descuentos exclusivos, ofertas especiales y más."
+    },
+
+    "login": {
+      "welcomeBack": "Bienvenido de nuevo",
+      "signInToContinue": "Inicia sesión en tu cuenta para continuar."
+    },
+
+    "shop": {
+      "home": "Inicio",
+      "shop": "Tienda",
+      "categories": "Categorías",
+      "searchPlaceholder": "Buscar productos..."
     }
   }
   

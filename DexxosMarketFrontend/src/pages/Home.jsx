@@ -3,8 +3,11 @@ import FooterComponent from "../footer/Footer";
 import { FaShoppingBasket, FaTruck, FaGift } from "react-icons/fa";
 import { Card } from "flowbite-react";
 import DexxosLogo from "../../assets/DexxosLogo.webp";
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
+  const { t } = useTranslation(); // Hook de i18next para traducciones
+
   return (
     <div>
       <main className="flex-1">
@@ -14,18 +17,16 @@ export default function Home() {
               src={DexxosLogo}
               width="550"
               height="550"
-              alt="Productos Frescos"
+              alt={t('home.headline')} // Puedes agregar traducción para el alt si es necesario
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
             />
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  Dexxos Market: Tu Supermercado de Confianza
+                  {t('home.headline')}
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Encuentra una amplia variedad de productos frescos y de
-                  calidad en nuestras tiendas. Disfruta de un servicio
-                  excepcional y precios competitivos.
+                  {t('home.subheadline')}
                 </p>
               </div>
             </div>
@@ -38,32 +39,27 @@ export default function Home() {
             <Card className="flex-1 mx-2">
               <div className="flex flex-col items-center justify-center gap-4 p-6 h-full">
                 <FaTruck className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-semibold">Entrega a Domicilio</h3>
+                <h3 className="text-xl font-semibold">{t('home.deliveryTitle')}</h3>
                 <p className="text-muted-foreground text-center">
-                  Disfruta de la comodidad de recibir tus compras en tu hogar.
-                  Nuestro servicio de entrega a domicilio es rápido y confiable.
+                  {t('home.deliveryDescription')}
                 </p>
               </div>
             </Card>
             <Card className="flex-1 mx-2">
               <div className="flex flex-col items-center justify-center gap-4 p-6 h-full">
                 <FaShoppingBasket className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-semibold">Recogida en Tienda</h3>
+                <h3 className="text-xl font-semibold">{t('home.pickupTitle')}</h3>
                 <p className="text-muted-foreground text-center">
-                  Si lo prefieres, puedes recoger tus compras en cualquiera de
-                  nuestras tiendas. ¡Rápido y sin filas!
+                  {t('home.pickupDescription')}
                 </p>
               </div>
             </Card>
             <Card className="flex-1 mx-2">
               <div className="flex flex-col items-center justify-center gap-4 p-6 h-full">
                 <FaGift className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-semibold">
-                  Programa de Recompensas
-                </h3>
+                <h3 className="text-xl font-semibold">{t('home.rewardsTitle')}</h3>
                 <p className="text-muted-foreground text-center">
-                  Únete a nuestro programa de recompensas y disfruta de
-                  descuentos exclusivos, ofertas especiales y más.
+                  {t('home.rewardsDescription')}
                 </p>
               </div>
             </Card>

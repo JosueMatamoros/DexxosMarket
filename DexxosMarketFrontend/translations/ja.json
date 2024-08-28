@@ -41,6 +41,38 @@
       "confirmationMessage": "カート内の商品を購入してもよろしいですか？",
       "yesBuyNow": "はい、今すぐ購入",
       "noCancel": "いいえ、キャンセル"
+    },
+    
+
+
+
+    "account": {
+      "home": "ホーム",
+      "account": "アカウント",
+      "orders": "注文"
+    },
+
+    "home": {
+      "headline": "Dexxosマーケット: 信頼できるスーパーマーケット",
+      "subheadline": "当店では、豊富な新鮮で高品質な製品を取り揃えています。優れたサービスと競争力のある価格をお楽しみください。",
+      "deliveryTitle": "自宅配達",
+      "deliveryDescription": "購入品を自宅に配達してもらう便利さをお楽しみください。私たちの自宅配達サービスは迅速で信頼性があります。",
+      "pickupTitle": "店頭受け取り",
+      "pickupDescription": "お好みで、どの店舗でもご購入品を受け取ることができます。早くて並ぶ必要がありません！",
+      "rewardsTitle": "リワードプログラム",
+      "rewardsDescription": "リワードプログラムに参加して、特別割引、特別オファーなどをお楽しみください。"
+    },
+
+    "login": {
+      "welcomeBack": "おかえりなさい",
+      "signInToContinue": "続行するには、アカウントにサインインしてください。"
+    },
+
+    "shop": {
+      "home": "ホーム",
+      "shop": "ショップ",
+      "categories": "カテゴリー",
+      "searchPlaceholder": "商品を探す..."
     }
   }
   
