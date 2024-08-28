@@ -8,7 +8,7 @@ const fetchOrderById = async (req, res) => {
         // Consulta para obtener todas las órdenes del usuario junto con los detalles del producto
         const ordersResult = await pool.query(
             `
-            SELECT o.order_id, o.total_price, o.shipping_price, p.product_id, p.name, p.price, od.quantity, p.image
+            SELECT o.order_id, o.barcode, o.total_price, o.shipping_price, p.product_id, p.name, p.price, od.quantity, p.image
             FROM orders o
             JOIN order_details od ON o.order_id = od.order_id
             JOIN products p ON od.product_id = p.product_id
@@ -29,6 +29,7 @@ const fetchOrderById = async (req, res) => {
             if (!orders[orderId]) {
                 orders[orderId] = {
                     order_id: orderId,
+                    barcode: row.barcode,
                     total_price: row.total_price,
                     shipping_price: row.shipping_price,
                     products: []
