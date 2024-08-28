@@ -13,7 +13,7 @@ const Header = () => {
   const { mode, toggleMode } = useThemeMode();
   const { isAuthenticated, user, logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -62,16 +62,16 @@ const Header = () => {
             {isAuthenticated ? (
               <>
                 <Dropdown.Item as={Link} to="/account">
-                  Account
+                  {t('header.account')}
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
-                  Log Out
+                  {t('header.logOut')}
                 </Dropdown.Item>
               </>
             ) : (
               <Dropdown.Item as={Link} to="/login">
-                Log In
+                {t('header.logIn')}
               </Dropdown.Item>
             )}
           </Dropdown>
@@ -94,13 +94,13 @@ const Header = () => {
         </div>
         <Navbar.Collapse>
           <Navbar.Link as={Link} to="/" active={true}>
-            Home
+            {t('header.home')}
           </Navbar.Link>
           <Navbar.Link as={Link} to="/shop">
-            Shop
+            {t('header.shop')}
           </Navbar.Link>
           <Navbar.Link as={Link} to="/locations">
-            Puntos de Venta
+            {t('header.locations')}
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>

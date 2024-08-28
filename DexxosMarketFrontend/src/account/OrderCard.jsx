@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Dropdown, Pagination } from 'flowbite-react';
+import { Card, Button, Dropdown } from 'flowbite-react';
 import { useTranslation } from 'react-i18next';
 import { useThemeMode } from 'flowbite-react';
 import BarcodeModal from './BarcodeModal';
@@ -31,7 +31,7 @@ export default function OrderCard({ order }) {
           </div>
           <div className="flex items-center space-x-2">
             <Button size="sm" outline onClick={toggleModal}>
-              Barcode
+              {t('orderCard.barcode')}
             </Button>
             <Dropdown label={selectedOption} dismissOnClick={false}>
               <Dropdown.Item onClick={() => handleSelect('Dexxos Market')}>

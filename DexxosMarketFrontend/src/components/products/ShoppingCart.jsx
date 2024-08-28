@@ -6,11 +6,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from '../../context/CartContext';
 import ConfirmationModal from './ConfirmationModal';
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 export default function ShoppingCart({ isOpen, toggleDrawer }) {
     const { user } = useAuth0();
     const { cartItems, fetchCartItems } = useContext(CartContext); // Usa el contexto para obtener los datos del carrito
     const [loading, setLoading] = useState(true);
+    const { t } = useTranslation(); // Hook de i18next para traducciones
 
     useEffect(() => {
         if (user) {
@@ -23,10 +25,9 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
         return total + (item.price * item.quantity);
     }, 0);
 
-
     return (
         <Drawer open={isOpen} onClose={toggleDrawer} position="right">
-            <Drawer.Header title="Shopping Cart" titleIcon={BsCart2} />
+            <Drawer.Header title={t('shoppingCart.title')} titleIcon={BsCart2} />
             <Drawer.Items>
                 <div className="flex flex-col gap-4">
                     {cartItems.map((item) => (
@@ -43,12 +44,12 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
                 {/* Sección para el precio total y el botón de pagar */}
                 <div className="mt-4 p-4 border-t">
                     <div className="flex justify-between items-center mb-4">
-                        <span className="text-lg font-semibold">Total:</span>
+                        <span className="text-lg font-semibold">{t('shoppingCart.total')}</span>
                         <span className="text-lg font-semibold">₡{totalPrice.toFixed(2)}</span>
                     </div>
                     {/*Centrar el Confirmation Modal*/}
                     <div className="flex justify-center">
-                    <ConfirmationModal isOpen={isOpen} toggleDrawer={toggleDrawer} />
+                        <ConfirmationModal isOpen={isOpen} toggleDrawer={toggleDrawer} />
                     </div>
                 </div>
             </Drawer.Items>

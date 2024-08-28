@@ -1,78 +1,109 @@
 {
-    "orderCard": {
-      "orderTitle": "注文",
-      "date": "日付",
-      "trackOrder": "注文を追跡",
-      "moreOptions": "その他",
-      "orderDetails": "注文の詳細",
-      "subtotal": "小計",
-      "shipping": "配送",
-      "total": "合計",
-      "updated": "更新日",
-      "updatedDate": "2023年11月23日"
-    },
+  "orderCard": {
+    "orderTitle": "注文",
+    "barcode": "バーコード",
+    "orderDetails": "注文の詳細",
+    "subtotal": "小計",
+    "shipping": "送料",
+    "total": "合計",
+    "updated": "更新",
+    "updatedDate": "2023年11月23日"
+  },
 
-    "personalInformation": {
-      "loading": "読み込み中...",
-      "loginPrompt": "個人情報を表示するにはログインしてください。"
-    },
+  "personalInformation": {
+    "loading": "読み込み中...",
+    "loginPrompt": "個人情報を表示するにはログインしてください。"
+  },
 
-    "locationSelector": {
-      "startLocation": "開始場所",
-      "endLocation": "目的地"
-    },
+  "locationSelector": {
+    "startLocation": "開始場所",
+    "endLocation": "目的地"
+  },
 
-    "intermediate": {
-      "loading": "読み込み中...",
-      "loginProcess": "ログインプロセスを完了するまでお待ちください。"
-    },
+  "intermediate": {
+    "loading": "読み込み中...",
+    "loginProcess": "ログインプロセスを完了するまでお待ちください。"
+  },
 
-    "loginButton": {
-      "signIn": "サインイン"
-    },
+  "loginButton": {
+    "signIn": "サインイン"
+  },
 
-    "logoutButton": {
-      "logOut": "ログアウト"
-    },
+  "logoutButton": {
+    "logOut": "ログアウト"
+  },
 
-    "confirmationModal": {
-      "pay": "支払う",
-      "confirmPurchase": "購入を確認してください",
-      "confirmationMessage": "カート内の商品を購入してもよろしいですか？",
-      "yesBuyNow": "はい、今すぐ購入",
-      "noCancel": "いいえ、キャンセル"
-    },
-    
+  "confirmationModal": {
+    "pay": "支払う",
+    "confirmPurchase": "購入を確認してください",
+    "confirmationMessage": "カート内の商品を購入してもよろしいですか？",
+    "yesBuyNow": "はい、今すぐ購入",
+    "noCancel": "いいえ、キャンセル"
+  },
+  
+  "productCards": {
+    "productAdded": "カートに商品が追加されました。",
+    "sale": "セール",
+    "onlinePurchase": "オンライン購入時",
+    "addToCart": "カートに追加"
+  },
 
+  "shoppingCart": {
+    "title": "ショッピングカート",
+    "total": "合計:"
+  },
 
+  "stars": {
+    "reviews": "レビュー"
+  },
 
-    "account": {
-      "home": "ホーム",
-      "account": "アカウント",
-      "orders": "注文"
-    },
+  "thanks": {
+    "thankYou": "ご注文ありがとうございます！",
+    "appreciation": "ご愛顧いただきありがとうございます。ご注文はできるだけ早く処理され、発送されます。",
+    "loading": "読み込み中..."
+  },
 
-    "home": {
-      "headline": "Dexxosマーケット: 信頼できるスーパーマーケット",
-      "subheadline": "当店では、豊富な新鮮で高品質な製品を取り揃えています。優れたサービスと競争力のある価格をお楽しみください。",
-      "deliveryTitle": "自宅配達",
-      "deliveryDescription": "購入品を自宅に配達してもらう便利さをお楽しみください。私たちの自宅配達サービスは迅速で信頼性があります。",
-      "pickupTitle": "店頭受け取り",
-      "pickupDescription": "お好みで、どの店舗でもご購入品を受け取ることができます。早くて並ぶ必要がありません！",
-      "rewardsTitle": "リワードプログラム",
-      "rewardsDescription": "リワードプログラムに参加して、特別割引、特別オファーなどをお楽しみください。"
-    },
+  "header": {
+    "account": "アカウント",
+    "logOut": "ログアウト",
+    "logIn": "ログイン",
+    "home": "ホーム",
+    "shop": "ショップ",
+    "locations": "販売店の場所"
+  },
 
-    "login": {
-      "welcomeBack": "おかえりなさい",
-      "signInToContinue": "続行するには、アカウントにサインインしてください。"
-    },
+  "account": {
+    "home": "ホーム",
+    "account": "アカウント",
+    "orders": "注文"
+  },
 
-    "shop": {
-      "home": "ホーム",
-      "shop": "ショップ",
-      "categories": "カテゴリー",
-      "searchPlaceholder": "商品を探す..."
-    }
+  "home": {
+    "headline": "Dexxosマーケット: 信頼できるスーパーマーケット",
+    "subheadline": "当店では、豊富な新鮮で高品質な製品を取り揃えています。優れたサービスと競争力のある価格をお楽しみください。",
+    "deliveryTitle": "自宅配達",
+    "deliveryDescription": "購入品を自宅に配達してもらう便利さをお楽しみください。私たちの自宅配達サービスは迅速で信頼性があります。",
+    "pickupTitle": "店頭受け取り",
+    "pickupDescription": "お好みで、どの店舗でもご購入品を受け取ることができます。早くて並ぶ必要がありません！",
+    "rewardsTitle": "リワードプログラム",
+    "rewardsDescription": "リワードプログラムに参加して、特別割引、特別オファーなどをお楽しみください。"
+  },
+
+  "login": {
+    "welcomeBack": "おかえりなさい",
+    "signInToContinue": "続行するには、アカウントにサインインしてください。"
+  },
+
+  "shop": {
+    "home": "ホーム",
+    "shop": "ショップ",
+    "categories": "カテゴリー",
+    "searchPlaceholder": "商品を探す..."
+  },
+
+  "barcodeModal": {
+    "generatedBarcode": "生成されたバーコード",
+    "close": "閉じる"
   }
+}
   
