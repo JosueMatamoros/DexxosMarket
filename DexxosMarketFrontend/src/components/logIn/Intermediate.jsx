@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 export default function IntermediatePage() {
     const { user, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
+    const { t } = useTranslation(); // Hook de i18next para traducciones
 
     useEffect(() => {
         if (isAuthenticated && user) {
@@ -22,9 +24,9 @@ export default function IntermediatePage() {
             .then(response => {
                 console.log('User registered successfully:', response.data);
 
-                // Esperar 8 segundos antes de redirigir al usuario
+                // Esperar 1.5 segundos antes de redirigir al usuario
                 setTimeout(() => {
-                    navigate('/account');  // Redirige a la página final después de 8 segundos
+                    navigate('/account');  // Redirige a la página final después de 1.5 segundos
                 }, 1500);
             })
             .catch(error => {
@@ -53,9 +55,9 @@ export default function IntermediatePage() {
                         fill="currentFill"
                     />
                 </svg>
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only">{t('intermediate.loading')}</span>
             </div>
-            <p className="mt-4">Please wait while we complete your login process.</p>
+            <p className="mt-4">{t('intermediate.loginProcess')}</p>
         </div>
     );
 }

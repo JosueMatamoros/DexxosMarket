@@ -1,17 +1,46 @@
 {
     "orderCard": {
       "orderTitle": "Order",
+      "date": "Date",
       "trackOrder": "Track Order",
       "moreOptions": "More",
-      "edit": "Edit",
-      "export": "Export",
-      "trash": "Trash",
       "orderDetails": "Order Details",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
       "total": "Total",
       "updated": "Updated",
       "updatedDate": "November 23, 2023"
+    },
+
+    "personalInformation": {
+      "loading": "Loading...",
+      "loginPrompt": "Please log in to view your personal information."
+    },
+
+    "locationSelector": {
+      "startLocation": "Start Location",
+      "endLocation": "End Location"
+    },
+
+    "intermediate": {
+      "loading": "Loading...",
+      "loginProcess": "Please wait while we complete your login process."
+    },
+
+    "loginButton": {
+      "signIn": "Sign in"
+    },
+
+    "logoutButton": {
+      "logOut": "Log Out"
+    },
+
+    "confirmationModal": {
+      "pay": "Pay",
+      "confirmPurchase": "Confirm Your Purchase",
+      "confirmationMessage": "Are you sure you want to purchase the items in your cart?",
+      "yesBuyNow": "Yes, Buy Now",
+      "noCancel": "No, Cancel"
     }
   }
   

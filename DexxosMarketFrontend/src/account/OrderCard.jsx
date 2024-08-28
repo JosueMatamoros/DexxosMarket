@@ -10,7 +10,7 @@ export default function OrderCard({ order }) {
       <div className="flex justify-between items-start p-4 bg-gray-100">
         <div>
           <h5 className="text-lg font-bold">{t('orderCard.orderTitle')} {order.order_id}</h5>
-          <p className="text-sm text-gray-500">Date: {new Date().toLocaleDateString()}</p>
+          <p className="text-sm text-gray-500">{t('orderCard.date')}: {new Date().toLocaleDateString()}</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button size="sm" outline>

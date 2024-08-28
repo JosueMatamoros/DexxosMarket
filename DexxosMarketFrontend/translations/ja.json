@@ -1,17 +1,46 @@
 {
     "orderCard": {
       "orderTitle": "注文",
+      "date": "日付",
       "trackOrder": "注文を追跡",
       "moreOptions": "その他",
-      "edit": "編集",
-      "export": "エクスポート",
-      "trash": "削除",
       "orderDetails": "注文の詳細",
       "subtotal": "小計",
       "shipping": "配送",
       "total": "合計",
       "updated": "更新日",
       "updatedDate": "2023年11月23日"
+    },
+
+    "personalInformation": {
+      "loading": "読み込み中...",
+      "loginPrompt": "個人情報を表示するにはログインしてください。"
+    },
+
+    "locationSelector": {
+      "startLocation": "開始場所",
+      "endLocation": "目的地"
+    },
+
+    "intermediate": {
+      "loading": "読み込み中...",
+      "loginProcess": "ログインプロセスを完了するまでお待ちください。"
+    },
+
+    "loginButton": {
+      "signIn": "サインイン"
+    },
+
+    "logoutButton": {
+      "logOut": "ログアウト"
+    },
+
+    "confirmationModal": {
+      "pay": "支払う",
+      "confirmPurchase": "購入を確認してください",
+      "confirmationMessage": "カート内の商品を購入してもよろしいですか？",
+      "yesBuyNow": "はい、今すぐ購入",
+      "noCancel": "いいえ、キャンセル"
     }
   }
   
