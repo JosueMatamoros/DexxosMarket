@@ -1,6 +1,7 @@
 {
   "orderCard": {
     "orderTitle": "注文",
+    "date": "日付",
     "barcode": "バーコード",
     "orderDetails": "注文の詳細",
     "subtotal": "小計",

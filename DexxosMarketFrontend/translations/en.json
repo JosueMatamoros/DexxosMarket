@@ -1,6 +1,7 @@
 {
   "orderCard": {
     "orderTitle": "Order",
+    "date": "Date",
     "barcode": "Barcode",
     "orderDetails": "Order Details",
     "subtotal": "Subtotal",
