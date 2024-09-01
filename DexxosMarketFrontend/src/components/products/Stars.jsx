@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function Stars({ rating, reviews }) {
+export default function Stars({ rating, reviews_count }) {
     const { t } = useTranslation(); // Hook de i18next para traducciones
 
     const fullStars = Math.floor(rating);
@@ -27,7 +27,7 @@ export default function Stars({ rating, reviews }) {
             ))}
             <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">{rating}</p>
             <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-            <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">{reviews} {t('stars.reviews')}</a>
+            <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">{reviews_count} {t('stars.reviews')}</a>
         </div>
     )
 }

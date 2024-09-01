@@ -8,20 +8,15 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { deeplApiKey } from '../../../API/deeplConfig';
 
-function getRandomReviews() {
-    return Math.floor(Math.random() * (700 - 50 + 1)) + 50;
-}
-
-export default function ProductCards({ imgSrc, imgAlt, name, price, product_id }) {
+export default function ProductCards({ imgSrc, imgAlt, name, price, product_id, reviews_count }) {
     const { user } = useAuth0();
     const { mode } = useThemeMode();
     const [showToast, setShowToast] = useState(false);
-    const { addToCart } = useContext(CartContext); // Usa la función addToCart del contexto
-    const { t, i18n } = useTranslation(); // Hook de i18next para traducciones
+    const { addToCart } = useContext(CartContext);
+    const { t, i18n } = useTranslation();
     const [translatedName, setTranslatedName] = useState(name);
 
-    const rating = 3; // Puedes ajustar esto según sea necesario
-    const reviews = getRandomReviews();
+    const rating = 3; // Ajusta según sea necesario
 
     useEffect(() => {
         const translateProductName = async () => {
@@ -33,7 +28,6 @@ export default function ProductCards({ imgSrc, imgAlt, name, price, product_id }
                         target_lang: i18n.language.toLowerCase(),
                     },
                 });
-
                 setTranslatedName(response.data.translations[0].text);
             } catch (error) {
                 console.error('Error translating product name:', error);
@@ -45,12 +39,11 @@ export default function ProductCards({ imgSrc, imgAlt, name, price, product_id }
     }, [i18n.language, name]);
 
     const handleAddToCartClick = () => {
-        console.log(product_id);
-        addToCart(user.sub, product_id, 1); // Llama a addToCart con la información necesaria
+        addToCart(user.sub, product_id, 1);
         setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000); // Ocultar el toast después de 3 segundos
+        setTimeout(() => setShowToast(false), 3000);
     };
-    
+
     return (
         <div className={`transition-colors duration-500 ease-in-out shadow-md rounded-lg w-full max-w-sm ${mode === 'dark' ? 'bg-slate-800 text-white' : 'bg-white text-black'}`}>
             {showToast && (
@@ -71,7 +64,7 @@ export default function ProductCards({ imgSrc, imgAlt, name, price, product_id }
                 <div className="space-y-2">
                     <h2 className={`text-lg font-bold`}>{translatedName}</h2>
                     <div className="flex items-center space-x-2">
-                        <Stars rating={rating} reviews={reviews} />
+                        <Stars rating={rating} reviews_count={reviews_count} />
                     </div>
                     <div className="flex items-center space-x-2">
                         <span className="text-2xl font-bold text-red-500">₡{price}</span>
