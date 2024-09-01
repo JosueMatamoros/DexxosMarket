@@ -7,12 +7,14 @@ import { CartContext } from '../../context/CartContext';
 import ConfirmationModal from './ConfirmationModal';
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
+import { deeplApiKey } from '../../../API/deeplConfig'; // Importar la API Key
 
 export default function ShoppingCart({ isOpen, toggleDrawer }) {
     const { user } = useAuth0();
     const { cartItems, fetchCartItems } = useContext(CartContext); // Usa el contexto para obtener los datos del carrito
     const [loading, setLoading] = useState(true);
-    const { t } = useTranslation(); // Hook de i18next para traducciones
+    const { t, i18n } = useTranslation(); // Hook de i18next para traducciones
+    const [translatedCartItems, setTranslatedCartItems] = useState([]);
 
     useEffect(() => {
         if (user) {
@@ -20,8 +22,36 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
         }
     }, [user, fetchCartItems]);
 
+    useEffect(() => {
+        const translateCartItems = async () => {
+            const translated = await Promise.all(cartItems.map(async (item) => {
+                try {
+                    const response = await axios.post('https://api-free.deepl.com/v2/translate', null, {
+                        params: {
+                            auth_key: deeplApiKey,
+                            text: item.name,
+                            target_lang: i18n.language.toLowerCase(),
+                        },
+                    });
+
+                    return {
+                        ...item,
+                        name: response.data.translations[0].text,
+                    };
+                } catch (error) {
+                    console.error('Error translating product name:', error);
+                    return item; // En caso de error, devuelve el item sin traducir
+                }
+            }));
+
+            setTranslatedCartItems(translated);
+        };
+
+        translateCartItems();
+    }, [i18n.language, cartItems]);
+
     // Calcula el precio total
-    const totalPrice = cartItems.reduce((total, item) => {
+    const totalPrice = translatedCartItems.reduce((total, item) => {
         return total + (item.price * item.quantity);
     }, 0);
 
@@ -30,7 +60,7 @@ export default function ShoppingCart({ isOpen, toggleDrawer }) {
             <Drawer.Header title={t('shoppingCart.title')} titleIcon={BsCart2} />
             <Drawer.Items>
                 <div className="flex flex-col gap-4">
-                    {cartItems.map((item) => (
+                    {translatedCartItems.map((item) => (
                         <ItemCart
                             key={item.product_id}
                             name={item.name}

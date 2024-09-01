@@ -5,13 +5,15 @@ import ProductCards from "../components/products/ProductCards";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
+import { deeplApiKey } from '../../API/deeplConfig'; // Importa la API Key
 
 export default function Shop() {
-  const { t } = useTranslation(); // Hook de i18next para traducciones
+  const { t, i18n } = useTranslation(); // Hook de i18next para traducciones
   const { user } = useAuth0();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [translatedProducts, setTranslatedProducts] = useState([]);
 
   // Fetch products from backend
   useEffect(() => {
@@ -26,14 +28,44 @@ export default function Shop() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const translateProducts = async () => {
+      const translated = await Promise.all(products.map(async (product) => {
+        try {
+          const response = await axios.post('https://api-free.deepl.com/v2/translate', null, {
+            params: {
+              auth_key: deeplApiKey,
+              text: product.name,
+              target_lang: i18n.language.toLowerCase(),
+            },
+          });
+
+          return {
+            ...product,
+            name: response.data.translations[0].text,
+          };
+        } catch (error) {
+          console.error('Error translating product name:', error);
+          return product; // En caso de error, devuelve el producto sin traducir
+        }
+      }));
+
+      setTranslatedProducts(translated);
+    };
+
+    if (products.length > 0) {
+      translateProducts();
+    }
+  }, [i18n.language, products]);
+
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
+    return translatedProducts.filter((product) => {
       if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
         return false;
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm, selectedCategories, products]);
+  }, [searchTerm, selectedCategories, translatedProducts]);
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {

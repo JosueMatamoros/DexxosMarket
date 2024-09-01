@@ -1,24 +1,48 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useThemeMode, Toast } from 'flowbite-react';
 import { FaCheck } from "react-icons/fa";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from '../../context/CartContext';
 import Stars from './Stars';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { deeplApiKey } from '../../../API/deeplConfig';
 
 function getRandomReviews() {
     return Math.floor(Math.random() * (700 - 50 + 1)) + 50;
 }
 
-export default function ProductCards({ imgSrc, imgAlt, name, price, product_id, }) {
+export default function ProductCards({ imgSrc, imgAlt, name, price, product_id }) {
     const { user } = useAuth0();
     const { mode } = useThemeMode();
     const [showToast, setShowToast] = useState(false);
     const { addToCart } = useContext(CartContext); // Usa la función addToCart del contexto
-    const { t } = useTranslation(); // Hook de i18next para traducciones
+    const { t, i18n } = useTranslation(); // Hook de i18next para traducciones
+    const [translatedName, setTranslatedName] = useState(name);
 
     const rating = 3; // Puedes ajustar esto según sea necesario
     const reviews = getRandomReviews();
+
+    useEffect(() => {
+        const translateProductName = async () => {
+            try {
+                const response = await axios.post('https://api-free.deepl.com/v2/translate', null, {
+                    params: {
+                        auth_key: deeplApiKey,
+                        text: name,
+                        target_lang: i18n.language.toLowerCase(),
+                    },
+                });
+
+                setTranslatedName(response.data.translations[0].text);
+            } catch (error) {
+                console.error('Error translating product name:', error);
+                setTranslatedName(name); // Si hay un error, se muestra el nombre original
+            }
+        };
+
+        translateProductName();
+    }, [i18n.language, name]);
 
     const handleAddToCartClick = () => {
         console.log(product_id);
@@ -45,7 +69,7 @@ export default function ProductCards({ imgSrc, imgAlt, name, price, product_id, 
             </div>
             <div className="p-4">
                 <div className="space-y-2">
-                    <h2 className={`text-lg font-bold`}>{name}</h2>
+                    <h2 className={`text-lg font-bold`}>{translatedName}</h2>
                     <div className="flex items-center space-x-2">
                         <Stars rating={rating} reviews={reviews} />
                     </div>

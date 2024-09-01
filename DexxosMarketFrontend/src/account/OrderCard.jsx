@@ -1,17 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Dropdown } from 'flowbite-react';
 import { useTranslation } from 'react-i18next';
 import { useThemeMode } from 'flowbite-react';
 import BarcodeModal from './BarcodeModal';
+import { deeplApiKey } from '../../API/deeplConfig';
+import axios from 'axios';
 
 export default function OrderCard({ order }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { mode } = useThemeMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [translatedProducts, setTranslatedProducts] = useState([]);
 
   const isDarkMode = mode === 'dark';
 
   const [selectedOption, setSelectedOption] = useState('Dexxos Market');
+
+  useEffect(() => {
+    const translateProducts = async () => {
+      const translated = await Promise.all(order.products.map(async (product) => {
+        const response = await axios.post('https://api-free.deepl.com/v2/translate', null, {
+          params: {
+            auth_key: deeplApiKey,
+            text: product.name,
+            target_lang: i18n.language.toLocaleLowerCase()
+          }
+        });
+
+        return {
+          ...product,
+          name: response.data.translations[0].text
+        };
+      }));
+
+      setTranslatedProducts(translated);
+    };
+
+    translateProducts();
+  }, [i18n.language, order.products]);
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -58,7 +84,7 @@ export default function OrderCard({ order }) {
         <div className="p-4">
           <h6 className="font-semibold">{t('orderCard.orderDetails')}</h6>
           <ul className="divide-y divide-gray-200">
-            {order.products.map((product) => (
+            {translatedProducts.map((product) => (
               <li key={product.product_id} className="py-2 flex justify-between items-center">
                 <span className="text-gray-700">
                   {product.name} x {product.quantity}
