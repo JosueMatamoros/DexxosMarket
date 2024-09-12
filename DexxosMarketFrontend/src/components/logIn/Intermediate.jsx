@@ -13,7 +13,7 @@ export default function IntermediatePage() {
 
             console.log('Sending request with user ID:', userId);
 
-            axios.post('http://localhost:5000/users/', {
+            axios.post('http://localhost:5001/users/', {
                 user_id: userId,
                 email: user.email,
                 name: user.name,

@@ -8,7 +8,7 @@ const ordersRoutes = require('./routes/ordersRoutes');
 const orderDetailsRoutes = require('./routes/orderDetailsRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const app = express();
-const port = 5000;
+const port = 5001;
 
 app.use(cors());
 app.use(express.json());

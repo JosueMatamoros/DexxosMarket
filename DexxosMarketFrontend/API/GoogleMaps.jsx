@@ -7,7 +7,7 @@ import { useThemeMode } from "flowbite-react";
 
 const GoogleMap = () => {
   const mapRef = useRef(null);
-  const apiKey = "key"; // Introduce Google Maps API Key
+  const apiKey = "AIzaSyBcBRXKY0uS-qh5fBxHvIUcsie3oi7RNKU";
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
   const [startLocation, setStartLocation] = useState(null);
