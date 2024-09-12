@@ -2,25 +2,62 @@ const pool = require('../config');
 
 const fetchCartByUserId = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM cart WHERE user_id = $1', [req.params.id]);
+        const query = `
+            SELECT 
+                cart.product_id, 
+                cart.quantity, 
+                products.name, 
+                products.price,
+                products.image
+            FROM 
+                cart
+            INNER JOIN 
+                products 
+            ON 
+                cart.product_id = products.product_id
+            WHERE 
+                cart.user_id = $1
+        `;
+        const result = await pool.query(query, [req.params.id]);
         res.json(result.rows);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
+
 const addCartItem = async (req, res) => {
+    const { user_id, product_id, quantity } = req.body;
+
     try {
-        const { user_id, product_id, quantity } = req.body;
-        const result = await pool.query(
-            'INSERT INTO cart (user_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
-            [user_id, product_id, quantity]
+        // Verificar si el producto ya está en el carrito
+        const existingItem = await pool.query(
+            'SELECT * FROM cart WHERE user_id = $1 AND product_id = $2',
+            [user_id, product_id]
         );
-        res.status(201).json(result.rows[0]);
+
+        if (existingItem.rows.length > 0) {
+            // Si el producto ya está en el carrito, actualizar la cantidad
+            const newQuantity = existingItem.rows[0].quantity + quantity;
+            await pool.query(
+                'UPDATE cart SET quantity = $1 WHERE user_id = $2 AND product_id = $3',
+                [newQuantity, user_id, product_id]
+            );
+        } else {
+            // Si el producto no está en el carrito, agregarlo
+            await pool.query(
+                'INSERT INTO cart (user_id, product_id, quantity) VALUES ($1, $2, $3)',
+                [user_id, product_id, quantity]
+            );
+        }
+
+        res.status(200).json({ message: 'Product added to cart successfully' });
     } catch (error) {
-        res.status(500).send(error.message);
+        console.error('Error adding product to cart:', error);
+        res.status(500).json({ message: 'Error adding product to cart' });
     }
 };
+
 
 const modifyCartItem = async (req, res) => {
     try {

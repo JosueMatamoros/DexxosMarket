@@ -1,0 +1,123 @@
+{
+  "orderCard": {
+    "orderTitle": "Order",
+    "date": "Date",
+    "barcode": "Barcode",
+    "orderDetails": "Order Details",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "updated": "Updated",
+    "updatedDate": "November 23, 2023"
+  },
+
+  "personalInformation": {
+    "loading": "Loading...",
+    "loginPrompt": "Please log in to view your personal information."
+  },
+
+  "locationSelector": {
+    "startLocation": "Start Location",
+    "endLocation": "End Location"
+  },
+
+  "intermediate": {
+    "loading": "Loading...",
+    "loginProcess": "Please wait while we complete your login process."
+  },
+
+  "loginButton": {
+    "signIn": "Sign in"
+  },
+
+  "logoutButton": {
+    "logOut": "Log Out"
+  },
+
+  "confirmationModal": {
+    "pay": "Pay",
+    "confirmPurchase": "Confirm Your Purchase",
+    "confirmationMessage": "Are you sure you want to purchase the items in your cart?",
+    "yesBuyNow": "Yes, Buy Now",
+    "noCancel": "No, Cancel"
+  },
+
+  "productCards": {
+    "productAdded": "Product added to cart.",
+    "sale": "Sale",
+    "onlinePurchase": "When purchased online",
+    "addToCart": "Add to cart"
+  },
+
+  "shoppingCart": {
+    "title": "Shopping Cart",
+    "total": "Total:"
+  },
+
+  "stars": {
+    "reviews": "reviews"
+  },
+
+  "thanks": {
+    "thankYou": "Thank you for your order!",
+    "appreciation": "We appreciate your business. Your order will be processed and shipped as soon as possible.",
+    "loading": "Loading..."
+  },
+
+  "header": {
+    "account": "Account",
+    "logOut": "Log Out",
+    "logIn": "Log In",
+    "home": "Home",
+    "shop": "Shop",
+    "locations": "Store Locations"
+  },
+
+  "account": {
+    "home": "Home",
+    "account": "Account",
+    "orders": "Orders"
+  },
+
+  "home": {
+    "headline": "Dexxos Market: Your Trusted Supermarket",
+    "subheadline": "Find a wide variety of fresh and quality products in our stores. Enjoy exceptional service and competitive prices.",
+    "deliveryTitle": "Home Delivery",
+    "deliveryDescription": "Enjoy the convenience of having your purchases delivered to your home. Our home delivery service is fast and reliable.",
+    "pickupTitle": "Store Pickup",
+    "pickupDescription": "If you prefer, you can pick up your purchases at any of our stores. Quick and no lines!",
+    "rewardsTitle": "Rewards Program",
+    "rewardsDescription": "Join our rewards program and enjoy exclusive discounts, special offers, and more."
+  },
+  
+  "login": {
+    "welcomeBack": "Welcome Back",
+    "signInToContinue": "Sign in to your account to continue."
+  },
+
+  "shop": {
+    "home": "Home",
+    "shop": "Shop",
+    "categories": "Categories",
+    "searchPlaceholder": "Search products..."
+  },
+
+  "barcodeModal": {
+    "generatedBarcode": "Generated Barcode",
+    "close": "Close"
+  },
+
+  "googleMap": {
+    "distance": "Distance",
+    "eta": "ETA",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "currentLocation": "Current Location",
+    "routeInfo": "Route Information",
+    "location": "Location",
+    "destination": "Destination",
+    "stores": "Stores",
+    "openGoogleMaps": "Open Google Maps"
+  }
+}
+  

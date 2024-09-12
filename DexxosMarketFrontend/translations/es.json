@@ -1,0 +1,123 @@
+{
+  "orderCard": {
+    "orderTitle": "Orden",
+    "date": "Fecha",
+    "barcode": "Código de barras",
+    "orderDetails": "Detalles de la Orden",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "total": "Total",
+    "updated": "Actualizado",
+    "updatedDate": "23 de noviembre de 2023"
+  },
+
+  "personalInformation": {
+    "loading": "Cargando...",
+    "loginPrompt": "Por favor, inicia sesión para ver tu información personal."
+  },
+
+  "locationSelector": {
+    "startLocation": "Ubicación de Inicio",
+    "endLocation": "Ubicación de Destino"
+  },
+
+  "intermediate": {
+    "loading": "Cargando...",
+    "loginProcess": "Por favor, espera mientras completamos tu proceso de inicio de sesión."
+  },
+
+  "loginButton": {
+    "signIn": "Iniciar sesión"
+  },
+
+  "logoutButton": {
+    "logOut": "Cerrar sesión"
+  },
+
+  "confirmationModal": {
+    "pay": "Pagar",
+    "confirmPurchase": "Confirma tu compra",
+    "confirmationMessage": "¿Estás seguro de que deseas comprar los artículos en tu carrito?",
+    "yesBuyNow": "Sí, comprar ahora",
+    "noCancel": "No, cancelar"
+  },
+  
+  "productCards": {
+    "productAdded": "Producto agregado al carrito.",
+    "sale": "Oferta",
+    "onlinePurchase": "Al comprar en línea",
+    "addToCart": "Añadir al carrito"
+  },
+
+  "shoppingCart": {
+    "title": "Carrito de Compras",
+    "total": "Total:"
+  },
+
+  "stars": {
+    "reviews": "reseñas"
+  },
+
+  "thanks": {
+    "thankYou": "¡Gracias por tu pedido!",
+    "appreciation": "Agradecemos tu compra. Tu pedido será procesado y enviado lo antes posible.",
+    "loading": "Cargando..."
+  },
+
+  "header": {
+    "account": "Cuenta",
+    "logOut": "Cerrar sesión",
+    "logIn": "Iniciar sesión",
+    "home": "Inicio",
+    "shop": "Tienda",
+    "locations": "Puntos de Venta"
+  },
+
+  "account": {
+    "home": "Inicio",
+    "account": "Cuenta",
+    "orders": "Órdenes"
+  },
+
+  "home": {
+    "headline": "Dexxos Market: Tu Supermercado de Confianza",
+    "subheadline": "Encuentra una amplia variedad de productos frescos y de calidad en nuestras tiendas. Disfruta de un servicio excepcional y precios competitivos.",
+    "deliveryTitle": "Entrega a Domicilio",
+    "deliveryDescription": "Disfruta de la comodidad de recibir tus compras en tu hogar. Nuestro servicio de entrega a domicilio es rápido y confiable.",
+    "pickupTitle": "Recogida en Tienda",
+    "pickupDescription": "Si lo prefieres, puedes recoger tus compras en cualquiera de nuestras tiendas. ¡Rápido y sin filas!",
+    "rewardsTitle": "Programa de Recompensas",
+    "rewardsDescription": "Únete a nuestro programa de recompensas y disfruta de descuentos exclusivos, ofertas especiales y más."
+  },
+
+  "login": {
+    "welcomeBack": "Bienvenido de nuevo",
+    "signInToContinue": "Inicia sesión en tu cuenta para continuar."
+  },
+
+  "shop": {
+    "home": "Inicio",
+    "shop": "Tienda",
+    "categories": "Categorías",
+    "searchPlaceholder": "Buscar productos..."
+  },
+
+  "barcodeModal": {
+    "generatedBarcode": "Código de Barras Generado",
+    "close": "Cerrar"
+  },
+
+  "googleMap": {
+    "distance": "Distancia",
+    "eta": "ETA",
+    "departure": "Ubicación",
+    "arrival": "Destino",
+    "currentLocation": "Ubicación Actual",
+    "routeInfo": "Información de Ruta",
+    "location": "Ubicación",
+    "destination": "Destino",
+    "stores": "Locales",
+    "openGoogleMaps": "Abrir Google Maps"
+  }
+}
+  

@@ -10,10 +10,10 @@ const {
 const router = express.Router();
 
 // Get order by id
-router.get('/:id', fetchOrderById);
+router.get('/:user_id', fetchOrderById);
 
 // Create new order
-router.post('/', addOrder);
+router.post('/:user_id', addOrder);
 
 // Update order
 router.put('/:id', modifyOrder);
